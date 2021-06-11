@@ -1,0 +1,80 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Edit Most Recent News Here!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelEditMostRecent' pk=pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="file" name="most_recent_img" id="most_recent_img" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{existing_news_data.news_image.url}}"
+                             id="most-recent-news-img-preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="most_recent_news_title" id="most_recent_news_title" cols="30" rows="5" placeholder="News Title"
+                                  style="width:100%" required>{{existing_news_data.news_title}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="most_recent_news_description" id="most_recent_news_description" cols="30" rows="10"
+                                  placeholder="News Description" style="width:100%" required>{{existing_news_data.news_description}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="text" name="news_writer" id="news_writer" class="form-control" value="{{existing_news_data.news_writer}}"
+                               placeholder="News Writer" required>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">ADD NEWS</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- END Input Grid Row -->
+
+<script>
+const input_file = document.getElementById('most_recent_img');
+const img = document.getElementById('most-recent-news-img-preview');
+
+input_file.onchange = () =>{
+let img_url = URL.createObjectURL(input_file.files[0]);
+img.src     = img_url;
+};
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}> <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Edit Social Media Links!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelEditlSocialMediaLink' pk=pk %}" method="post" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="text" name="fb_link" class="form-control" value="{{edit_social_media_Link.site_fb_link}}" required>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="tw_link" class="form-control" value="{{edit_social_media_Link.site_tw_link}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="text" name="instagram_link" class="form-control" value="{{edit_social_media_Link.site_instagram_link}}" required>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="youtube_link" class="form-control" value="{{edit_social_media_Link.site_youtube_link}}" required>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">EDIT LINKS</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- END Input Grid Row -->
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}> <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Your Profile Picture!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelProfilePic' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="profile-pic" id="profile-pic-file" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}" id="profile-pic-preview" style="width:100%;height: 170px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Change Password!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelChangePassword' %}" method="post" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="email" name="pass-email" class="form-control" placeholder="Type Email" required>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="old-pass" class="form-control" placeholder="Old Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input type="text" name="new-pass" class="form-control" placeholder="New Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input type="text" name="confirm-pass" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Change</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+</div>
+<!-- END Input Grid Row -->
+
+<script>
+            const input_file = document.getElementById('profile-pic-file');
+            const img = document.getElementById('profile-pic-preview');
+
+            input_file.onchange = () =>{
+            let img_url = URL.createObjectURL(input_file.files[0]);
+            img.src     = img_url;
+            };
+</script>
+{% endblock %}

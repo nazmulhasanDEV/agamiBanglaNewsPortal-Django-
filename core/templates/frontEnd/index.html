@@ -1,0 +1,319 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/css/util.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Header Mobile -->
+			<div class="wrap-header-mobile">
+				<!-- Logo moblie -->
+				<div class="logo-mobile">
+					<a href="index.html"><img src="{%static 'frontEnd/agamiBanglaLogo/logo.png' %}" alt="IMG-LOGO"></a>
+				</div>
+
+				<!-- Button show menu -->
+				<div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+					<span class="hamburger-box">
+						<span class="hamburger-inner"></span>
+					</span>
+				</div>
+			</div>
+
+			<!-- Menu Mobile -->
+			<div class="menu-mobile">
+				<ul class="main-menu-m">
+					<li>
+						<a href="index.html" id="nav_home_mobile_version">Proschod</a>
+					</li>
+
+					<li>
+						<a href="category-01.html">News</a>
+					</li>
+
+					<li>
+						<a href="category-02.html">Entertainment </a>
+					</li>
+
+					<li>
+						<a href="category-01.html">Business</a>
+					</li>
+
+					<li>
+						<a href="category-02.html">Travel</a>
+					</li>
+
+					<li>
+						<a href="category-01.html">Life Style</a>
+					</li>
+
+					<li>
+						<a href="category-02.html">Video</a>
+					</li>
+
+				</ul>
+			</div>
+
+			<!--  -->
+			<div class="wrap-logo container">
+				<!-- Logo desktop -->
+				<div class="logo">
+					<a href="index.html"><img src="{%static 'frontEnd/agamiBanglaLogo/Logo.png' %}" alt="LOGO"></a>
+				</div>
+
+				<!-- Banner -->
+				<div class="banner-header">
+					<!-- <a href="#"><img src="images/banner-01.jpg" alt="IMG"></a> -->
+				</div>
+			</div>
+
+			<!--  -->
+			<div class="wrap-main-nav">
+				<div class="main-nav">
+					<!-- Menu desktop -->
+					<nav class="menu-desktop">
+						<a class="logo-stick" href="index.html">
+							<img src="{%static 'frontEnd/agamiBanglaLogo/Logo.png' %}" alt="LOGO">
+						</a>
+
+						<ul class="main-menu">
+							<li class="main-menu-active">
+								<a href="index.html" id="nav_home">Proschod</a>
+								<!-- <ul class="sub-menu">
+									<li><a href="index.html">Homepage v1</a></li>
+								</ul> -->
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-01.html">Songbad</a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-02.html">Economics </a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-01.html">Sara Bishho</a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-02.html">Binodon</a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-01.html">Khela</a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-01.html">Shikkha Ongon</a>
+							</li>
+
+							<li class="mega-menu-item">
+								<a href="category-02.html">Feature</a>
+							</li>
+
+							<li class="">
+								<a href="gallery.html" id="nav_gallery">Chobi</a>
+							</li>
+
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	{% block main_content %}
+
+	{% endblock %}
+
+
+	<!-- Footer -->
+	<footer>
+		<div class="bg2 p-t-30 p-b-20">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="footer-nav-bar-list">
+							<h5 class="f1-m-7 browse-by-category-title">Browse by category</h5>
+							<ul class="browse_category_list">
+								<li><a href="#">category1</a></li>
+								<li>|</li>
+								<li><a href="#">category1</a></li>
+								<li>|</li>
+								<li><a href="#">category1</a></li>
+								<li>|</li>
+								<li><a href="#">category1</a></li>
+								<li>|</li>
+								<li><a href="#">category1</a></li>
+								<li>|</li>
+								<li><a href="#">category1</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="footer-nav-privacy-policy-term-condition">
+							<h5 class="privacy-policy-term-condition-title">hihihi</h5>
+						<ul>
+							<li><a href="#">category1</a></li>
+							<li>|</li>
+							<li><a href="#">category1</a></li>
+							<li>|</li>
+							<li><a href="#">category1</a></li>
+							<li>|</li>
+							<li><a href="#">category1</a></li>
+							<li>|</li>
+							<li><a href="#">category1</a></li>
+							<li>|</li>
+							<li><a href="#">category1</a></li>
+						</ul>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="row" id="editor-publisher-section">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<i class="fas fa-edit"></i>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5 class="text-center"><strong>Editor</strong></h5>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5 class="text-center">Mominul Haque</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<i class="fas fa-newspaper"></i>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5 class="text-center"><strong>Publisher</strong></h5>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<h5 class="text-center">Mominul Haque</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="footer-nav-publisher-editor">
+							<h5 class="publisher-editor-title">text</h5>
+						<ul>
+							<li><i class="fas fa-edit"></i><strong> Editor: </strong>John Doe</li>
+							<li><i class="fas fa-newspaper"></i><strong> Publisher: </strong>  Mominul Haque</li>
+						</ul>
+
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg11">
+
+			<div class="topbar">
+				<div class="content-topbar container h-100">
+					<div class="right-topbar text-center">
+						<span>Follow us:</span>
+						<a href="#">
+							<span class="fab fa-facebook-f" style="color:#4267B2;"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-twitter" style="color:#1C9CEB;"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-pinterest-p" style="color:#E60023;"></span>
+						</a>
+
+						<a href="#">
+							<span class="fab fa-youtube" style="color: #FF0000;"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="container flex-c-c p-tb-15">
+				<span class="f1-s-1 cl0 txt-center">
+					<a href="#" class="f1-s-1 cl10 hov-link1" id="copy-right-nav">
+						Replication of any content,
+						 news or article published on this website is strongly prohibited. Copyright @2021 All right reserved by <strong>Agami Bangla</strong>
+					</a>
+				</span>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="fas fa-angle-up"></span>
+		</span>
+	</div>
+
+	<!-- Modal Video 01-->
+	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document" data-dismiss="modal">
+			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+			<div class="wrap-video-mo-01">
+
+			</div>
+		</div>
+	</div>
+
+<!-- ====================================================================== -->
+<script src="{%static 'frontEnd/js/custom.js' %}"></script>
+
+<!--===============================================================================================-->
+	<script src="{%static 'frontEnd/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'frontEnd/vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'frontEnd/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{%static 'frontEnd/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'frontEnd/js/main.js' %}"></script>
+
+</body>
+</html>

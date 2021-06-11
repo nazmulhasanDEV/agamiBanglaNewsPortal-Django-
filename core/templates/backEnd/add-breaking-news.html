@@ -1,0 +1,121 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}> <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Add Breaking News!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelAddBreakingNews' %}" method="post" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="breaking-news" id="breaking-news" cols="0" rows="10" placeholder="Add breaking news..." maxlength="75" style="width: 100%;" required></textarea>
+                        <p><span>Characters (maximum:75):</span> <span id="number_of_characters"></span></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>
+                            <option value="1">Please select duration</option>
+                            <option value="1">1 Day</option>
+                            <option value="2">2 Days</option>
+                            <option value="3">3 Days</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+<!--                        <input type="text" name="staff-username" class="form-control" placeholder="Staff Username" required>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">ADD BREAKING NEWS</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- END Input Grid Row -->
+
+<!-- table section -->
+<!-- Responsive Full Block -->
+<div class="block">
+    <!-- Responsive Full Title -->
+    <div class="block-title">
+        <h2><strong>Breaking News </strong> List</h2>
+    </div>
+    <!-- END Responsive Full Title -->
+
+    <div class="table-responsive">
+        {% if breaking_news_list %}
+        <table class="table table-vcenter table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Breaking News</th>
+                <th class="text-center">Added</th>
+                <th style="width: 150px;" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for br_news in breaking_news_list %}
+            <tr>
+                <td class="text-center">{{forloop.counter}}</td>
+                <td class="text-center">{{br_news.breaking_news}}</td>
+                <td class="text-center">{{br_news.added_at}}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+<!--                        user activation and deactivation part -->
+<!--                        {%if user.is_active == True %}-->
+<!--                        <a href="{%url 'adminPanelDeactivateStaffAccnt' pk=user.pk %}" data-toggle="tooltip" title="Deactivate" class="btn btn-default" id="active-deactive"> Deactivate</a>-->
+<!--                        {% else %}-->
+<!--                        <a href="{%url 'adminPanelActivateStaffAccnt' pk=user.pk %}" data-toggle="tooltip" title="Deactivate" class="btn btn-default" id="active-deactive"> Activate</a>-->
+<!--                        {% endif %}-->
+
+<!--                        user removing part -->
+                        <a href="{%url 'adminPanelDeleteBreakingNews' pk=br_news.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center">No breaking news added yet!!</h3>
+        {% endif %}
+    </div>
+    <!-- END Responsive Full Content -->
+</div>
+<!-- END Responsive Full Block -->
+<!-- table section ends-->
+
+<script>
+    const news_text = document.getElementById('breaking-news');
+    news_text.addEventListener('keyup', function(){
+    let number_of_characters = document.getElementById('number_of_characters');
+    number_of_characters.innerHTML = news_text.value.length;
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+ <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+<!-- Responsive Full Block -->
+<div class="block">
+    <!-- Responsive Full Title -->
+    <div class="block-title">
+        <h2><strong>News Categories</strong> & Sub-categories List</h2>
+    </div>
+    <!-- END Responsive Full Title -->
+
+    <div class="table-responsive">
+        {% if news_subcategories_list %}
+        <table class="table table-vcenter table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Subcategory Name</th>
+                <th style="width: 150px;" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for subcat in news_subcategories_list %}
+            <tr>
+                <td class="text-center">{{forloop.counter}}</td>
+                <td class="text-center">{{subcat.subcategory_name}}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+<!--                        <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i> Edit</a>-->
+                        <a href="{%url 'adminPanelDelNewsSubcat' pk=subcat.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <h3 class="text-center">No subcategory added yet!!</h3>
+            {% endif %}
+    </div>
+    <!-- END Responsive Full Content -->
+</div>
+<!-- END Responsive Full Block -->
+<!-- table section ends-->
+
+{% endblock %}

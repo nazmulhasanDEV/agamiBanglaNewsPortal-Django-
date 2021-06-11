@@ -1,0 +1,412 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<!--main cover news part start-->
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Main Cover News!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelAddMainCoverNews' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="main-cover-news-img" id="main-cover-news-img" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}" id="main-cover-news-img-preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="cover_news_title" id="cover_news_title" cols="" style="width: 100%;" rows="10" maxlength="70" placeholder="Cover News Title"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="select-cover-news-category" class="form-control" size="1" required>
+                            {% if news_categories_list|length == 0 %}
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+                            <option value="0">Select News Category</option>
+                            {% for cats in news_categories_list %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+
+    <div class="col-md-6">
+        <!-- table section -->
+        <div class="block">
+            <!-- Responsive Full Title -->
+            <div class="block-title">
+                <h2><strong>Site Main Cover </strong>News</h2>
+                {% if main_cover_news_info %}
+                <span style="text-decoration: underline;"><a href="{%url 'adminPanelEditMainCoverNews' pk=main_cover_news_info.pk %}" class="disabled"><strong>Edit Info!</strong></a></span>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Title -->
+
+            <div class="table-responsive">
+                {% if main_cover_news_info %}
+                <table class="table table-vcenter table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cover Image</th>
+                        <th class="text-center">Title</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><img src="{{main_cover_news_info.cover_news_image.url}}" style="width:95px;height:95px;" alt="avatar" class="img-circle"></td>
+                        <td class="text-center">{{main_cover_news_info.cover_news_title}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 class="text-center">No added yet! Please add logo to increase your site looking!</h3>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Content -->
+        </div>
+        <!-- table section ends-->
+    </div>
+
+</div>
+
+<!--add cover news part start-->
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Cover News One!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelAddCoverNews1' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="cover_news_one" id="cover_news_one" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="cover_news_one_preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="cover_news_one_title" id="" cols="" style="width: 100%;" rows="10"
+                                  placeholder="Cover News One Title"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="select-cover-news-category" class="form-control" size="1" required>
+                            {% if news_categories_list|length == 0 %}
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+                            <option value="0">Select News Category</option>
+                            {% for cats in news_categories_list %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Cover News Two!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelAddCoverNews2' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="cover_news_two" id="cover_news_two" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="cover_news_two_preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="cover_news_two_title" id="" cols="" style="width: 100%;" rows="10"
+                                  placeholder="Cover News One Title"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="select_cover_news_two_category" class="form-control" size="1" required>
+                            {% if news_categories_list|length == 0 %}
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+                            <option value="0">Select News Category</option>
+                            {% for cats in news_categories_list %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+
+</div>
+
+<!--add cover news part start-->
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Cover News Three!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelAddCoverNews3' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="cover_news_three" id="cover_news_three" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="cover_news_three_preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="cover_news_three_title" id="" cols="" style="width: 100%;" rows="10"
+                                  placeholder="Cover News One Title"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="select_cover_news_three_category" class="form-control" size="1" required>
+                            {% if news_categories_list|length == 0 %}
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+                            <option value="0">Select News Category</option>
+                            {% for cats in news_categories_list %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Update Cover News Four!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelAddCoverNews4' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="cover_news_three" id="cover_news_four" class="form-control" required>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="cover_news_four_preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="cover_news_three_title" id="" cols="" style="width: 100%;" rows="10"
+                                  placeholder="Cover News One Title"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="select_cover_news_three_category" class="form-control" size="1" required>
+                            {% if news_categories_list|length == 0 %}
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+                            <option value="0">Select News Category</option>
+                            {% for cats in news_categories_list %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+
+</div>
+
+
+<script>
+<!--            cover news main-->
+            const input_file = document.getElementById('main-cover-news-img');
+            const img = document.getElementById('main-cover-news-img-preview');
+
+<!--            cover news one -->
+            const cover_news_one = document.getElementById('cover_news_one');
+            const cover_news_one_preview = document.getElementById('cover_news_one_preview');
+
+<!--            main cover news -->
+            input_file.onchange = () =>{
+            let img_url = URL.createObjectURL(input_file.files[0]);
+            img.src     = img_url;
+            };
+
+<!--            cover news one-->
+           cover_news_one.onchange = () =>{
+            let img_url = URL.createObjectURL(cover_news_one.files[0]);
+            cover_news_one_preview.src = img_url;
+            };
+
+
+<!--            cover news two-->
+            const cover_news_two = document.getElementById('cover_news_two');
+            const cover_news_two_preview = document.getElementById('cover_news_two_preview');
+
+            cover_news_two.onchange = () =>{
+            let img_url = URL.createObjectURL(cover_news_two.files[0]);
+            cover_news_two_preview.src = img_url;
+            };
+
+
+<!--            cover news three-->
+            const cover_news_three = document.getElementById('cover_news_three');
+            const cover_news_three_preview = document.getElementById('cover_news_three_preview');
+
+            cover_news_three.onchange = () =>{
+            let img_url = URL.createObjectURL(cover_news_three.files[0]);
+            cover_news_three_preview.src = img_url;
+            };
+
+<!--            cover news four-->
+            const cover_news_four = document.getElementById('cover_news_four');
+            const cover_news_four_preview = document.getElementById('cover_news_four_preview');
+
+            cover_news_four.onchange = () =>{
+            let img_url = URL.createObjectURL(cover_news_four.files[0]);
+            cover_news_four_preview.src = img_url;
+            };
+
+</script>
+{% endblock %}

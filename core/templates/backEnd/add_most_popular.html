@@ -1,0 +1,131 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Add Most Recent News Here!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelAddMostPopular' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="file" name="most_popular_img" id="most_recent_img" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="most-recent-news-img-preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="most_popular_news_title" id="most_recent_news_title" cols="30" rows="5" placeholder="News Title"
+                                  style="width:100%" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="most_popular_news_description" id="" cols="30" rows="10"
+                                  placeholder="News Description" style="width:100%" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="text" name="news_writer" id="news_writer" class="form-control"
+                               placeholder="News Writer" required>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">ADD NEWS</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- END Input Grid Row -->
+
+
+<!-- table section -->
+<!-- Responsive Full Block -->
+<div class="block">
+    <!-- Responsive Full Title -->
+    <div class="block-title">
+        <h2><strong>All Most Popular News</strong> List</h2>
+    </div>
+    <!-- END Responsive Full Title -->
+
+    <div class="table-responsive">
+        {% if most_popular_news_list|length >= 0 %}
+        <table class="table table-vcenter table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">News Image</th>
+                <th class="text-center">News Title</th>
+                <th class="text-center">News Description</th>
+                <th class="text-center">News Editor</th>
+                <th style="width: 150px;" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for news in most_popular_news_list %}
+            <tr>
+                <td class="text-center">{{forloop.counter}}</td>
+                <td class="text-center"><img src="{{news.news_image.url}}" style="width:75px;height:75px;" alt="avatar"
+                                             class="img-circle"></td>
+                <td class="text-center">{{news.news_title}}</td>
+                <td class="text-center">{{news.news_description}}</td>
+                <td class="text-center">{{news.news_writer}}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+                        <a href="{%url 'adminPanelEditMostPopular' pk=news.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{%url 'adminPanelDeleteMostPopular' pk=news.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center">No news added yet!!</h3>
+        {% endif %}
+    </div>
+    <!-- END Responsive Full Content -->
+</div>
+<!-- END Responsive Full Block -->
+<!-- table section ends-->
+
+<script>
+const input_file = document.getElementById('most_recent_img');
+const img = document.getElementById('most-recent-news-img-preview');
+
+input_file.onchange = () =>{
+let img_url = URL.createObjectURL(input_file.files[0]);
+img.src     = img_url;
+};
+
+</script>
+
+{% endblock %}

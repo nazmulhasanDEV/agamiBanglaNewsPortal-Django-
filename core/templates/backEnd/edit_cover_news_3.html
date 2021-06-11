@@ -1,0 +1,101 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<!--main cover news part start-->
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="block">
+            <div class="block-title">
+                <h2>Edit Cover News Three!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+
+            <!-- Input Grid Content -->
+            <form action="{%url 'adminPanelEditCoverNews3' pk=pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <input type="file" name="edit-cover-news-three-img" id="edit-cover-news-three-img" class="form-control">
+                    </div>
+                    <div class="col-md-5">
+                        <img src="{{cover_news_three_info.cover_news_image.url}}" id="cover-news-one-img-preview" style="width:100%;height: 110px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea name="edit_cover_news_title" id="edit_cover_news_title" cols="" style="width: 100%;" rows="10" maxlength="70" placeholder="Cover News Title" required>{{cover_news_three_info.cover_news_title}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <select id="select-category" name="edit-select-cover-news-category" class="form-control" size="1" required>
+
+                            {% if news_categories|length == 0 %}
+
+                            <option value="0">No News Category Found</option>
+                            {% else %}
+
+                            {% for cats in news_categories %}
+                            {% if cover_news_three_info %}
+
+                            {% if cats.pk == cover_news_three_cat_id %}
+                            <option value="{{cats.pk}}" selected>{{cats.category_name}}</option>
+                            {% else %}
+                            <option value="{{cats.pk}}">{{cats.category_name}}</option>
+                            {% endif %}
+
+                            {% endif %}
+                            {% endfor %}
+
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <!--                        <select id="select-category" name="select-news-category" class="form-control" size="1" required>-->
+                        <!--                            <option value="0">Please select category</option>-->
+                        <!--                            <option value="{{category.pk}}">{{category.category_name}}</option>-->
+                        <!--                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">EDIT</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+     <div class="col-md-3"></div>
+
+</div>
+
+
+<script>
+            const input_file = document.getElementById('edit-cover-news-three-img');
+            const img = document.getElementById('cover-news-one-img-preview');
+
+            input_file.onchange = () =>{
+            let img_url = URL.createObjectURL(input_file.files[0]);
+            img.src     = img_url;
+            };
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,349 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>Admin | Agami Bangla</title>
+    <meta name="description" content="admin">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="{%static 'backEnd/img/agami_bangla_logo/favicon-icon.png' %}">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon57.png' %}" sizes="57x57">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon72.png' %}" sizes="72x72">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon76.png' %}" sizes="76x76">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon114.png' %}" sizes="114x114">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon120.png' %}" sizes="120x120">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon144.png' %}" sizes="144x144">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon152.png' %}" sizes="152x152">
+    <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon180.png' %}" sizes="180x180">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Bootstrap is included in its original form, unaltered -->
+    <link rel="stylesheet" href="{%static 'backEnd/css/bootstrap.min.css' %}">
+
+    <!-- Related styles of various icon packs and plugins -->
+    <link rel="stylesheet" href="{%static 'backEnd/css/plugins.css' %}">
+
+    <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <link rel="stylesheet" href="{%static 'backEnd/css/main.css' %}">
+
+    <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+    <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+    <link rel="stylesheet" href="{%static 'backEnd/css/themes.css' %}">
+    <!-- END Stylesheets -->
+
+    <!-- Modernizr (browser feature detection library) -->
+    <script src="{%static 'backEnd/js/vendor/modernizr.min.js' %}"></script>
+</head>
+<body>
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Preloader -->
+    <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+    <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
+    <div class="preloader themed-background">
+        <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
+        <div class="inner">
+            <h3 class="text-light visible-lt-ie10"><strong>Loading..</strong></h3>
+            <div class="preloader-spinner hidden-lt-ie10"></div>
+        </div>
+    </div>
+    <!-- END Preloader -->
+
+    <!-- Page Container -->
+    <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+        <!-- Main Sidebar -->
+        <div id="sidebar">
+            <!-- Wrapper for scrolling functionality -->
+            <div id="sidebar-scroll">
+                <!-- Sidebar Content -->
+                <div class="sidebar-content">
+                    <!-- Brand -->
+                    <a href="index.html" class="sidebar-brand">
+                        <span class="sidebar-nav-mini-hide"><strong>আগামী</strong> বাংলা</span>
+                    </a>
+                    <!-- END Brand -->
+
+                    <!-- User Info -->
+                    <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+                        <div class="sidebar-user-avatar">
+                            <a href="page_ready_user_profile.html">
+                                {% if profile_pic %}
+                                <img src="{{profile_pic.profileImg.url}}" alt="avatar">
+                                {% else %}
+                                <img src="{%static 'backEnd/img/placeholders/avatars/avatar2.jpg' %}" alt="avatar">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="sidebar-user-name">{{request.user.user_name}}</div>
+                        <div class="sidebar-user-links">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom"
+                               title="Profile"><i class="gi gi-user"></i></a>
+<!--                            <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom"-->
+<!--                               title="Messages"><i class="gi gi-envelope"></i>-->
+<!--                            </a>-->
+                            <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
+                            <a href="/ag/admin/panel/update/profile/pic" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
+                            <a href="{%url 'logoutUser' %}" data-toggle="tooltip" data-placement="bottom"
+                               title="Logout"><i class="gi gi-exit"></i></a>
+                        </div>
+                    </div>
+                    <!-- END User Info -->
+
+                    <!-- Sidebar Navigation -->
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="/ag/admin/panel/home" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                        </li>
+
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix">
+                                <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                                    <i class="gi gi-settings"></i>
+                                </a></span>
+                            <span class="sidebar-header-title">Settings</span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Profile Setting</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/panel/update/profile/pic">Update Profile</a>
+                                </li>
+                            </ul>
+                        </li>
+
+<!--                        Staff setting -->
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Staff Setting</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/panel/add/new/staff">Add New Staff</a>
+                                </li>
+                            </ul>
+                        </li>
+<!--                        Staff setting ends-->
+
+<!--                        Site setting -->
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Site Setting</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/panel/site/setting">Site Setting</a>
+                                </li>
+                            </ul>
+                        </li>
+<!--                        Site setting ends-->
+
+<!--                        news settings -->
+                        <li class="sidebar-header">
+                            <span class="sidebar-header-options clearfix">
+                                <a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings">
+                                    <i class="gi gi-settings"></i>
+                                </a></span>
+                            <span class="sidebar-header-title">News Section</span>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">News Categories</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/panel/news/cats">Add News Categories</a>
+                                </li>
+                            </ul>
+                        </li>
+
+<!--                        breaking news-->
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Breaking News</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/panel/add/breaking-news">add breaking news</a>
+                                </li>
+                            </ul>
+                        </li>
+
+<!--                        cover news-->
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Cover News</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/add/cover/news">add cover news</a>
+                                </li>
+                                <li>
+                                    <a href="/ag/admin/cover/news/list">cover news list</a>
+                                </li>
+                            </ul>
+                        </li>
+
+<!--                        Most recent/popular-->
+                         <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Most Recent/Popular</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/add/most/recent">add most recent news</a>
+                                </li>
+                                <li>
+                                    <a href="/ag/admin/add/most/popular">add most popular news</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <!-- END Sidebar Navigation -->
+                </div>
+                <!-- END Sidebar Content -->
+            </div>
+            <!-- END Wrapper for scrolling functionality -->
+        </div>
+        <!-- END Main Sidebar -->
+
+        <!-- Main Container -->
+        <div id="main-container">
+            <!-- Header -->
+            <header class="navbar navbar-default">
+                <!-- Left Header Navigation -->
+                <ul class="nav navbar-nav-custom">
+                    <!-- Main Sidebar Toggle Button -->
+                    <li>
+                        <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
+                            <i class="fa fa-bars fa-fw"></i>
+                        </a>
+                    </li>
+                    <!-- END Main Sidebar Toggle Button -->
+                </ul>
+                <!-- END Left Header Navigation -->
+
+                <!-- Search Form -->
+                <form action="page_ready_search_results.html" method="post" class="navbar-form-custom">
+                    <div class="form-group">
+                        <input type="text" id="top-search" name="top-search" class="form-control"
+                               placeholder="Search..">
+                    </div>
+                </form>
+                <!-- END Search Form -->
+            </header>
+            <!-- END Header -->
+
+            <!-- Page content -->
+            <div id="page-content">
+                <!-- Dashboard Header -->
+                <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+                <div class="content-header content-header-media">
+                    <div class="header-section">
+                        <div class="row">
+                            <!-- Main Title (hidden on small devices for the statistics to fit) -->
+                            <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
+                                <h1>Welcome <strong>Admin</strong><br><small>You Look Awesome!</small></h1>
+                            </div>
+                            <!-- END Main Title -->
+
+                            <!-- Top Stats -->
+                            <div class="col-md-8 col-lg-6">
+                                <div class="row text-center">
+                                    <div class="col-xs-4 col-sm-3">
+                                        <h2 class="animation-hatch">
+                                            $<strong>93.7k</strong><br>
+                                            <small><i class="fa fa-thumbs-o-up"></i> Great</small>
+                                        </h2>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3">
+                                        <h2 class="animation-hatch">
+                                            <strong>167k</strong><br>
+                                            <small><i class="fa fa-heart-o"></i> Likes</small>
+                                        </h2>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3">
+                                        <h2 class="animation-hatch">
+                                            <strong>101</strong><br>
+                                            <small><i class="fa fa-calendar-o"></i> Events</small>
+                                        </h2>
+                                    </div>
+                                    <!-- We hide the last stat to fit the other 3 on small devices -->
+                                    <div class="col-sm-3 hidden-xs">
+                                        <h2 class="animation-hatch">
+                                            <strong>27&deg; C</strong><br>
+                                            <small><i class="fa fa-map-marker"></i> Sydney</small>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Top Stats -->
+                        </div>
+                    </div>
+                </div>
+                <!-- END Dashboard Header -->
+
+                <!-- Mini Top Stats Row -->
+                {% block main_content %} {% endblock %}
+                <!-- END Mini Top Stats Row -->
+            </div>
+            <!-- END Page Content -->
+
+            <!-- Footer -->
+            <footer class="clearfix">
+                <div class="pull-right">
+                     <i class="fa fa-heart text-danger"></i> by <a href="#" target="_blank">Agami Bangla</a>
+                </div>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Main Container -->
+    </div>
+    <!-- END Page Container -->
+</div>
+<!-- END Page Wrapper -->
+
+<!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+<a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+<script src="{% static 'backEnd/js/vendor/jquery.min.js' %}"></script>
+<script src="{% static 'backEnd/js/vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'backEnd/js/plugins.js' %}"></script>
+<script src="{% static 'backEnd/js/app.js' %}"></script>
+
+<!-- Google Maps API Key (you will have to obtain a Google Maps API key to use Google Maps) -->
+<!-- For more info please have a look at https://developers.google.com/maps/documentation/javascript/get-api-key#key -->
+<script src="https://maps.googleapis.com/maps/api/js?key="></script>
+<script src="{% static 'backEnd/js/helpers/gmaps.min.js' %}"></script>
+
+<!-- Load and execute javascript code used only in this page -->
+<script src="{% static 'backEnd/js/pages/index.js' %}"></script>
+<script>$(function(){ Index.init(); });</script>
+</body>
+</html>

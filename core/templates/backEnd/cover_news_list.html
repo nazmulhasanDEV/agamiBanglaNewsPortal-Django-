@@ -1,0 +1,179 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+<!-- cover news part start-->
+<div class="row">
+
+    <div class="col-md-6">
+        <!-- table section -->
+        <div class="block">
+            <!-- Responsive Full Title -->
+            <div class="block-title">
+                <h2><strong>Site Cover </strong>News One</h2>
+                {% if cover_news_one_infor %}
+                <span style="text-decoration: underline;"><a href="{% url 'adminPanelEditCoverNews1' pk=cover_news_one_infor.pk %}"><strong>Edit Info!</strong></a></span>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Title -->
+
+            <div class="table-responsive">
+                {% if cover_news_one_infor %}
+                <table class="table table-vcenter table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cover Image</th>
+                        <th class="text-center">Title</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><img src="{{cover_news_one_infor.cover_news_image.url}}" style="width:95px;height:95px;" alt="avatar" class="img-circle"></td>
+                        <td class="text-center">{{cover_news_one_infor.cover_news_title}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 class="text-center">No added yet!</h3>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Content -->
+        </div>
+        <!-- table section ends-->
+    </div>
+
+    <div class="col-md-6">
+        <!-- table section -->
+        <div class="block">
+            <!-- Responsive Full Title -->
+            <div class="block-title">
+                <h2><strong>Site Cover </strong>News Two</h2>
+                {% if cover_news_two_infor %}
+                <span style="text-decoration: underline;"><a href="{%url 'adminPanelEditCoverNews2' pk=cover_news_two_infor.pk %}" class="disabled"><strong>Edit Info!</strong></a></span>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Title -->
+
+            <div class="table-responsive">
+                {% if cover_news_two_infor%}
+                <table class="table table-vcenter table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cover Image</th>
+                        <th class="text-center">Title</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><img src="{{cover_news_two_infor.cover_news_image.url}}" style="width:95px;height:95px;" alt="avatar" class="img-circle"></td>
+                        <td class="text-center">{{cover_news_two_infor.cover_news_title}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 class="text-center">No added yet!</h3>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Content -->
+        </div>
+        <!-- table section ends-->
+    </div>
+
+</div>
+
+<!-- cover news part start-->
+<div class="row">
+
+    <div class="col-md-6">
+        <!-- table section -->
+        <div class="block">
+            <!-- Responsive Full Title -->
+            <div class="block-title">
+                <h2><strong>Site Cover </strong>News Three</h2>
+                {% if cover_news_three_infor %}
+                <span style="text-decoration: underline;"><a href="{% url 'adminPanelEditCoverNews3' pk=cover_news_three_infor.pk %}" class="disabled"><strong>Edit Info!</strong></a></span>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Title -->
+
+            <div class="table-responsive">
+                {% if cover_news_three_infor %}
+                <table class="table table-vcenter table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cover Image</th>
+                        <th class="text-center">Title</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><img src="{{cover_news_three_infor.cover_news_image.url}}" style="width:95px;height:95px;" alt="avatar" class="img-circle"></td>
+                        <td class="text-center">{{cover_news_three_infor.cover_news_title}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 class="text-center">No added yet! </h3>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Content -->
+        </div>
+        <!-- table section ends-->
+    </div>
+
+    <div class="col-md-6">
+        <!-- table section -->
+        <div class="block">
+            <!-- Responsive Full Title -->
+            <div class="block-title">
+                <h2><strong>Site Cover </strong>News Four</h2>
+                {% if cover_news_four_infor %}
+                <span style="text-decoration: underline;"><a href="{%url 'adminPanelEditCoverNews4' pk=cover_news_four_infor.pk %}" class="disabled"><strong>Edit Info!</strong></a></span>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Title -->
+
+            <div class="table-responsive">
+                {% if cover_news_four_infor %}
+                <table class="table table-vcenter table-striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Cover Image</th>
+                        <th class="text-center">Title</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><img src="{{cover_news_four_infor.cover_news_image.url}}" style="width:95px;height:95px;" alt="avatar" class="img-circle"></td>
+                        <td class="text-center">{{cover_news_four_infor.cover_news_title}}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                {% else %}
+                <h3 class="text-center">No added yet!</h3>
+                {% endif %}
+            </div>
+            <!-- END Responsive Full Content -->
+        </div>
+        <!-- table section ends-->
+    </div>
+
+</div>
+{% endblock %}
