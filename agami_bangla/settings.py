@@ -1,5 +1,6 @@
 # heroku setting
 import django_heroku
+import dj_database_url
 
 import os
 from pathlib import Path
@@ -78,6 +79,8 @@ DATABASES = {
     }
 }
 
+# for heroku
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -126,7 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
