@@ -1,0 +1,152 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+
+{% block jquery_link_block %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="row">
+
+    <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Add Main News Here!</h2>
+            </div>
+            <!-- END Input Grid Title -->
+            <form action="{%url 'adminPanelAddMainNews' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="file" name="main_news_img" id="main_news_img" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
+                             id="main-news-news-img-preview" style="width:100%;height: 150px;" alt="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <select id="select-main-news-category" name="select-main-news-category" class="form-control"
+                                size="1" required>
+                            <option value="0">Please select category</option>
+                            {% for news_cat in news_categories %}
+                            <option value="{{news_cat.pk}}">{{news_cat.category_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-xs-6">
+                        <select id="select-main-news-subcategory" name="select-main-news-subcategory"
+                                class="form-control" size="1" required>
+                            <option value="0">Please select sub-category</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="main_news_news_title" id="main_news_news_title" cols="30" rows="5"
+                                  placeholder="News Title"
+                                  style="width:100%" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea name="main_news_description" id="main_news_description" cols="30" rows="10"
+                                  placeholder="News Description" style="width:100%" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input type="text" name="news_writer" id="news_writer" class="form-control"
+                               placeholder="News Writer" required>
+                    </div>
+                </div>
+                <div class="form-group form-actions">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-sm btn-primary">ADD NEWS</button>
+                    </div>
+                </div>
+            </form>
+            <!-- END Input Grid Content -->
+        </div>
+        <!-- END Input Grid Block -->
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- END Input Grid Row -->
+
+<script>
+
+
+const news_cat = document.getElementById('select-main-news-category');
+const news_subcat = document.getElementById('select-main-news-subcategory');
+
+
+var csrf = $("input[name='csrfmiddlewaretoken']").val();
+
+news_cat.addEventListener('change', function(){
+// function start
+
+news_subcat.innerHTML = "<option>Please select sub-category</option>";
+
+//ajax starts
+$.ajax({
+
+url: '',
+type: 'get',
+data: {
+<!-- sending selected news category id to django views function -->
+news_cat_id : this.value,
+},
+success: function(response){
+<!-- grabing data from django veiws -->
+news_subcat_list = response.sub_cat_list,
+
+<!--# map function to loop over subcategory list-->
+news_subcat_list.map(item=>{
+
+createOption_for_subcat = document.createElement('option');
+createOption_for_subcat.textContent = item.subcategory_name;
+createOption_for_subcat.value = item.id;
+news_subcat.appendChild(createOption_for_subcat);
+
+});
+<!--map function ends-->
+
+}
+
+});
+//ajax method ends
+
+//function ends
+});
+
+
+
+const input_file = document.getElementById('main_news_img');
+const img = document.getElementById('main-news-news-img-preview');
+
+input_file.onchange = () =>{
+let img_url = URL.createObjectURL(input_file.files[0]);
+img.src     = img_url;
+};
+
+
+</script>
+
+{% endblock %}

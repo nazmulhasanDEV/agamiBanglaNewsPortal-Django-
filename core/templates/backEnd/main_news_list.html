@@ -1,0 +1,71 @@
+{% extends 'backEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+ <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}> <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+
+<!-- Responsive Full Block -->
+<div class="block">
+    <!-- Responsive Full Title -->
+    <div class="block-title">
+        <h2><strong>Main News</strong> List</h2>
+    </div>
+    <!-- END Responsive Full Title -->
+
+    <div class="table-responsive">
+        {% if main_news_list|length >= 0 %}
+        <table class="table table-vcenter table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">News Image</th>
+                <th class="text-center">News Category</th>
+                <th class="text-center">News Title</th>
+                <th class="text-center">News Description</th>
+                <th class="text-center">News Editor</th>
+                <th style="width: 150px;" class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for news in main_news_list %}
+            <tr>
+                <td class="text-center">{{forloop.counter}}</td>
+                <td class="text-center"><img src="{{news.news_image.url}}" style="width:75px;height:75px;" alt="avatar"
+                                             class="img-circle"></td>
+                <td class="text-center">{{news.news_category_name}}</td>
+                <td class="text-center">{{news.news_title}}</td>
+                <td class="text-center">{{news.news_description}}</td>
+                <td class="text-center">{{news.news_writer}}</td>
+                <td class="text-center">
+                    <div class="btn-group btn-group-xs">
+                        <a href="{%url 'adminPanelEditMainNews' pk=news.pk %}" data-toggle="tooltip" title="Edit"
+                           class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{%url 'adminPanelDeleteMainNews' pk=news.pk %}" data-toggle="tooltip" title="Delete"
+                           class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h3 class="text-center">No news added yet!!</h3>
+        {% endif %}
+    </div>
+    <!-- END Responsive Full Content -->
+</div>
+<!-- END Responsive Full Block -->
+<!-- table section ends-->
+
+
+{% endblock %}

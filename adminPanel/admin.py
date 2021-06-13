@@ -19,3 +19,6 @@ admin.site.register(CoverNews4)
 # most recent and popular
 admin.site.register(MostRecent)
 admin.site.register(MostPopular)
+
+# main news model
+admin.site.register(NewsMain)

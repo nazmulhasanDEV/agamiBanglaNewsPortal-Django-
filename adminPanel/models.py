@@ -134,3 +134,22 @@ class MostPopular(models.Model):
 
     def __str__(self):
         return "Most Popular: " + str(self.pk)
+
+# main news model
+class NewsMain(models.Model):
+    news_image            = models.ImageField()
+    news_title            = models.TextField(max_length=255)
+    news_description      = models.TextField(max_length=1000)
+    news_writer           = models.CharField(max_length=70, blank=True, null=True)
+    news_visitors         = models.IntegerField(default=0, blank=True, null=True)
+    news_comments         = models.IntegerField(default=0, blank=True, null=True)
+    news_tags             = models.TextField(default="", blank=True, null=True)
+    news_category_name    = models.CharField(max_length=255, blank=True, null=True)
+    news_catid            = models.IntegerField(default=0)
+    news_subcategory_name = models.CharField(max_length=255, blank=True, null=True)
+    news_subcatid         = models.IntegerField(default=0)
+    news_added_at         = models.DateField(auto_now_add=True)
+
+
+    def __str__(self):
+        return "Main News: " + str(self.pk)

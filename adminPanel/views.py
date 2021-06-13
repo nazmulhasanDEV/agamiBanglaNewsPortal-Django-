@@ -7,6 +7,8 @@ from user.models import User
 from .models import *
 from datetime import timedelta
 import datetime
+from django.http import JsonResponse
+
 
 # @login_required(login_url='/login/user')
 def admnPanel_index(request):
@@ -1248,7 +1250,200 @@ def adminPanel_deleteMostPopularNews(request, pk):
     return redirect('adminPanelAddMostPopular')
 
 
+# main news section starts
+
+# add main news
+# @login_required(login_url='/login/user')
+def adminPanel_addMainNews(request):
+
+    # grabing all the categories from db
+    news_categories = NewsCategories.objects.all()
+
+    # get selected category and it's pk from ajax request
+    selected_cat_id = request.GET.get('news_cat_id')
+
+    # grab all the sub-cats under selected cats
+    subcat_list = list(NewsSubCategories.objects.filter(category=selected_cat_id).values())
+
+    if request.is_ajax():
+        return JsonResponse({'cat_id': selected_cat_id, 'sub_cat_list': subcat_list})
+
+    # submitting data to db from news form
+    if request.method == 'POST':
+        news_file        = request.FILES['main_news_img']
+        news_cat_id      = request.POST.get('select-main-news-category')
+        news_sub_cat_id  = request.POST.get('select-main-news-subcategory')
+        news_title       = request.POST.get('main_news_news_title')
+        news_description = request.POST.get('main_news_description')
+        news_writer      = request.POST.get('news_writer')
+
+        file_extension = str(news_file).split('.')
+        valid_extension = ['jpeg', 'jpg', 'png']
+
+        if file_extension[1] in valid_extension:
+
+            # grabing news subcat model
+            news_subcat_db = NewsSubCategories.objects.filter(pk=news_sub_cat_id).first()
+            # finding the name of news category
+            news_cat_name = news_subcat_db.category.category_name
+            # finding the name of news subcategory name
+            news_subcat_name = news_subcat_db.subcategory_name
+
+            main_news_db = NewsMain(
+                news_image= news_file,
+                news_title= news_title,
+                news_description= news_description,
+                news_writer= news_writer,
+                news_visitors= 0,
+                news_comments= 0,
+                news_tags= "null",
+                news_category_name= news_cat_name,
+                news_catid= news_cat_id,
+                news_subcategory_name= news_subcat_name,
+                news_subcatid= news_sub_cat_id
+            )
+            main_news_db.save()
+            messages.success(request, "News has been added!")
+            return redirect('adminPanelAddMainNews')
+        else:
+            messages.warning(request, "Only images (.jpeg, jpg, png) are allowed!")
+            return redirect('adminPanelAddMainNews')
+
+    context = {
+        'news_categories' : news_categories,
+    }
+
+    return render(request, "backEnd/add_main_news.html", context)
+
+# main news list
+# @login_required(login_url='/login/user')
+def adminPanel_MainNewsList(request):
+
+    # grabing all the main news
+    main_news_list = NewsMain.objects.all()
+
+    context = {
+        'main_news_list' : main_news_list,
+    }
+
+    return render(request, "backEnd/main_news_list.html", context)
 
 
+# main news list
+# @login_required(login_url='/login/user')
+def adminPanel_editMainNews(request, pk):
 
+    # grabing news from db
+    main_news_db = NewsMain.objects.filter(pk=pk).first()
 
+    # grabing all the news categories
+    news_cats = NewsCategories.objects.all()
+
+    # grabing all the news categories
+    news_subcats = NewsSubCategories.objects.all()
+
+    # get selected category and it's pk from ajax request
+    selected_cat_id = request.GET.get('news_cat_id')
+
+    # grab all the sub-cats under selected cats
+    subcat_list = list(NewsSubCategories.objects.filter(category=selected_cat_id).values())
+
+    if request.is_ajax():
+        return JsonResponse({'cat_id': selected_cat_id, 'sub_cat_list': subcat_list})
+
+    # submitting data to db from news form
+    if request.method == 'POST':
+
+        news_cat_id = request.POST.get('select-main-news-category')
+        news_sub_cat_id = request.POST.get('select-main-news-subcategory')
+        news_title = request.POST.get('main_news_news_title')
+        news_description = request.POST.get('main_news_description')
+        news_writer = request.POST.get('news_writer')
+
+        try:
+            news_file = request.FILES['main_news_img']
+            file_extension = str(news_file).split('.')
+            valid_extension = ['jpeg', 'jpg', 'png']
+
+            if file_extension[1] in valid_extension:
+
+                fs = FileSystemStorage()
+
+                # grabing news subcat model
+                news_subcat_db = NewsSubCategories.objects.filter(pk=news_sub_cat_id).first()
+                # finding the name of news category
+                news_cat_name = news_subcat_db.category.category_name
+                # finding the name of news subcategory name
+                news_subcat_name = news_subcat_db.subcategory_name
+
+                # grabing news db by pk
+                main_news_db = NewsMain.objects.filter(pk=pk).first()
+                # delete old image
+                fs.delete(main_news_db.news_image.name)
+
+                main_news_db.news_image= news_file
+                main_news_db.news_title= news_title
+                main_news_db.news_description= news_description
+                main_news_db.news_writer= news_writer
+                main_news_db.news_visitors= 0
+                main_news_db.news_comments= 0
+                main_news_db.news_tags= "null"
+                main_news_db.news_category_name= news_cat_name
+                main_news_db.news_catid= news_cat_id
+                main_news_db.news_subcategory_name= news_subcat_name
+                main_news_db.news_subcatid= news_sub_cat_id
+                main_news_db.save()
+                messages.success(request, "News has been added!")
+                return redirect('adminPanelMainNewsList')
+            else:
+                messages.warning(request, "Only images (.jpeg, jpg, png) are allowed!")
+                return redirect('adminPanelEditMainNews', pk=pk)
+        except:
+            # grabing news subcat model
+            news_subcat_db = NewsSubCategories.objects.filter(pk=news_sub_cat_id).first()
+            # finding the name of news category
+            news_cat_name = news_subcat_db.category.category_name
+            # finding the name of news subcategory name
+            news_subcat_name = news_subcat_db.subcategory_name
+
+            # grabing news db by pk
+            main_news_db = NewsMain.objects.filter(pk=pk).first()
+            main_news_db.news_title = news_title
+            main_news_db.news_description = news_description
+            main_news_db.news_writer = news_writer
+            main_news_db.news_visitors = 0
+            main_news_db.news_comments = 0
+            main_news_db.news_tags = "null"
+            main_news_db.news_category_name = news_cat_name
+            main_news_db.news_catid = news_cat_id
+            main_news_db.news_subcategory_name = news_subcat_name
+            main_news_db.news_subcatid = news_sub_cat_id
+            main_news_db.save()
+            messages.success(request, "News has been updated!")
+            return redirect('adminPanelMainNewsList')
+
+    context = {
+        'pk' : pk,
+        'main_news_db' : main_news_db,
+        'news_cats' : news_cats,
+        'news_subcats' : news_subcats,
+    }
+
+    return render(request, "backEnd/edit_main_news.html", context)
+
+# main news list
+# @login_required(login_url='/login/user')
+def adminPanel_deleteMainNews(request, pk):
+
+    try:
+        fs = FileSystemStorage()
+        main_news_db = NewsMain.objects.filter(pk=pk).first()
+        fs.delete(main_news_db.news_image.name)
+        main_news_db.delete()
+        messages.success(request, "News has been deleted!")
+        return redirect('adminPanelMainNewsList')
+    except:
+        messages.warning(request, "News not found!")
+        return redirect('adminPanelMainNewsList')
+
+    return redirect('adminPanelMainNewsList')

@@ -82,6 +82,13 @@ urlpatterns = [
     url(r'^ag/admin/edit/most/popular/news/(?P<pk>\d+)/$', views.adminPanel_editMostPopularNews, name='adminPanelEditMostPopular'),
     url(r'^ag/admin/delete/most/popular/news/(?P<pk>\d+)/$', views.adminPanel_deleteMostPopularNews, name='adminPanelDeleteMostPopular'),
 
+    # main news
+    url(r'^ag/admin/add/main/news/$', views.adminPanel_addMainNews, name='adminPanelAddMainNews'),
+    url(r'^ag/admin/main/news/list/$', views.adminPanel_MainNewsList, name='adminPanelMainNewsList'),
+    url(r'^ag/admin/edit/main/news/(?P<pk>\d+)/$', views.adminPanel_editMainNews, name='adminPanelEditMainNews'),
+    url(r'^ag/admin/delete/main/news/(?P<pk>\d+)/$', views.adminPanel_deleteMainNews, name='adminPanelDeleteMainNews'),
+
+
 ]
 
 

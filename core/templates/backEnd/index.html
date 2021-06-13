@@ -26,6 +26,9 @@
     <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon152.png' %}" sizes="152x152">
     <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon180.png' %}" sizes="180x180">
     <!-- END Icons -->
+    {% block jquery_link_block %}
+
+    {% endblock %}
 
     <!-- Stylesheets -->
     <!-- Bootstrap is included in its original form, unaltered -->
@@ -223,6 +226,22 @@
                             </ul>
                         </li>
 
+<!--                      Most recent/popular-->
+                         <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Main News</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/add/main/news">add news</a>
+                                </li>
+                                <li>
+                                    <a href="/ag/admin/main/news/list">main news list</a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                     <!-- END Sidebar Navigation -->
                 </div>
@@ -331,6 +350,7 @@
 <!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
 <a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
 
+
 <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
 <script src="{% static 'backEnd/js/vendor/jquery.min.js' %}"></script>
 <script src="{% static 'backEnd/js/vendor/bootstrap.min.js' %}"></script>
@@ -345,5 +365,9 @@
 <!-- Load and execute javascript code used only in this page -->
 <script src="{% static 'backEnd/js/pages/index.js' %}"></script>
 <script>$(function(){ Index.init(); });</script>
+
+<!--custom js-->
+<script src="{% static 'backEnd/js/custom.js' %}"></script>
+
 </body>
 </html>

@@ -36,7 +36,11 @@
 			<div class="wrap-header-mobile">
 				<!-- Logo moblie -->
 				<div class="logo-mobile">
-					<a href="index.html"><img src="{%static 'frontEnd/agamiBanglaLogo/logo.png' %}" alt="IMG-LOGO"></a>
+					{% if site_logo %}
+					<a href="/"><img src="{{site_logo.site_logo.url}}" alt="IMG-LOGO"></a>
+					{% else %}
+					<a href="index.html">ADD SITE LOGO</a>
+					{% endif %}
 				</div>
 
 				<!-- Button show menu -->
@@ -51,31 +55,42 @@
 			<div class="menu-mobile">
 				<ul class="main-menu-m">
 					<li>
-						<a href="index.html" id="nav_home_mobile_version">Proschod</a>
+						<a href="index.html" id="nav_home_mobile_version">প্রচ্ছদ</a>
 					</li>
 
 					<li>
-						<a href="category-01.html">News</a>
+						<a href="category-01.html">সংবাদ</a>
 					</li>
 
 					<li>
-						<a href="category-02.html">Entertainment </a>
+						<a href="category-02.html">অর্থনীতি</a>
 					</li>
 
 					<li>
-						<a href="category-01.html">Business</a>
+						<a href="category-01.html">সারাবিশ্ব</a>
 					</li>
 
 					<li>
-						<a href="category-02.html">Travel</a>
+						<a href="category-02.html">বিনোদন</a>
 					</li>
 
 					<li>
-						<a href="category-01.html">Life Style</a>
+						<a href="category-01.html">খেলা</a>
 					</li>
 
 					<li>
-						<a href="category-02.html">Video</a>
+						<a href="category-02.html">শিক্ষাঙ্গন</a>
+					</li>
+
+					<li>
+						<a href="category-02.html">ফিচার</a>
+					</li>
+					<li>
+						<a href="category-02.html">ছবি</a>
+					</li>
+
+					<li>
+						<a href="category-02.html">অন্যান্য</a>
 					</li>
 
 				</ul>
@@ -85,7 +100,11 @@
 			<div class="wrap-logo container">
 				<!-- Logo desktop -->
 				<div class="logo">
-					<a href="index.html"><img src="{%static 'frontEnd/agamiBanglaLogo/Logo.png' %}" alt="LOGO"></a>
+					{%if site_logo %}
+					<a href="/"><img src="{{site_logo.site_logo.url}}" alt="LOGO"></a>
+					{% else %}
+					<a href="#">ADD SITE LOGO</a>
+					{% endif %}
 				</div>
 
 				<!-- Banner -->
@@ -99,48 +118,57 @@
 				<div class="main-nav">
 					<!-- Menu desktop -->
 					<nav class="menu-desktop">
-						<a class="logo-stick" href="index.html">
-							<img src="{%static 'frontEnd/agamiBanglaLogo/Logo.png' %}" alt="LOGO">
+						{% if site_logo %}
+						<a class="logo-stick" href="/">
+							<img src="{{site_logo.site_logo.url}}" alt="LOGO">
 						</a>
+						{% else %}
+						<a class="logo-stick" href="/">
+							ADD SITE LOGO
+						</a>
+						{% endif %}
 
 						<ul class="main-menu">
 							<li class="main-menu-active">
-								<a href="index.html" id="nav_home">Proschod</a>
+								<a href="index.html" id="nav_home">প্রচ্ছদ</a>
 								<!-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage v1</a></li>
 								</ul> -->
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-01.html">Songbad</a>
+								<a href="category-01.html">সংবাদ</a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-02.html">Economics </a>
+								<a href="category-02.html">অর্থনীতি </a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-01.html">Sara Bishho</a>
+								<a href="category-01.html">সারাবিশ্ব</a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-02.html">Binodon</a>
+								<a href="category-02.html">বিনোদন</a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-01.html">Khela</a>
+								<a href="category-01.html">খেলা</a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-01.html">Shikkha Ongon</a>
+								<a href="category-01.html">শিক্ষাঙ্গন</a>
 							</li>
 
 							<li class="mega-menu-item">
-								<a href="category-02.html">Feature</a>
+								<a href="category-02.html">ফিচার</a>
 							</li>
 
 							<li class="">
-								<a href="gallery.html" id="nav_gallery">Chobi</a>
+								<a href="gallery.html" id="nav_gallery">ছবি</a>
+							</li>
+							<li class="">
+								<a href="gallery.html" id="nav_gallery">অন্যান্য</a>
 							</li>
 
 						</ul>
