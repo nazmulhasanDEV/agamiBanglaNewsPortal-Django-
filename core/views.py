@@ -37,26 +37,36 @@ def home(request):
 
     # grabing cover news
     cover_news_main_db = CoverNewsMain.objects.filter().first()
-    cover_news_catid = int(cover_news_main_db.cover_news_category)
+    cover_news_catid = 0
+    if cover_news_main_db:
+        cover_news_catid += int(cover_news_main_db.cover_news_category)
 
     # gabing categories
     news_cats_db = NewsCategories.objects.all()
 
     # grabing cover_news_one
     cover_news_1_db = CoverNews1.objects.filter().first()
-    cover_news_1_catid = int(cover_news_1_db.cover_news_category)
+    cover_news_1_catid = 0
+    if cover_news_1_db:
+        cover_news_1_catid += int(cover_news_1_db.cover_news_category)
 
     # grabing cover_news_two
     cover_news_2_db = CoverNews2.objects.filter().first()
-    cover_news_2_catid = int(cover_news_2_db.cover_news_category)
+    cover_news_2_catid = 0
+    if cover_news_2_db:
+        cover_news_2_catid += int(cover_news_2_db.cover_news_category)
 
     # grabing cover_news_three
     cover_news_3_db = CoverNews3.objects.filter().first()
-    cover_news_3_catid = int(cover_news_3_db.cover_news_category)
+    cover_news_3_catid = 0
+    if cover_news_3_db:
+        cover_news_3_catid += int(cover_news_3_db.cover_news_category)
 
     # grabing cover_news_three
     cover_news_4_db = CoverNews4.objects.filter().first()
-    cover_news_4_catid = int(cover_news_4_db.cover_news_category)
+    cover_news_4_catid = 0
+    if cover_news_4_db:
+        cover_news_4_catid += int(cover_news_4_db.cover_news_category)
 
     context = {
         # cover news part two
