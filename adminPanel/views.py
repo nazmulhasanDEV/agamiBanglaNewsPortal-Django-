@@ -203,30 +203,20 @@ def adminPanel_newsCategory(request):
 
     return render(request, 'backEnd/news_category.html', context)
 
-# news categories
+# delete news categories
 # @login_required(login_url='/login/user')
-def adminPanel_newsCategory(request):
+def adminPanel_DeleteNewsCategory(request, pk):
 
-    if request.method == 'POST':
-        category_name = request.POST.get('news-category')
+    try:
+        news_cat = NewsCategories.objects.filter(pk=pk).first()
+        news_cat.delete()
+        messages.success(request, "Category has been deleted!")
+        return redirect('adminPanelNewsCats')
+    except:
+        messages.success(request, "Category can't be deleted!")
+        return redirect('adminPanelNewsCats')
 
-        if category_name:
-            news_cats = NewsCategories(category_name=category_name)
-            news_cats.save()
-            messages.success(request, "New category has been added!")
-            return redirect('adminPanelNewsCats')
-        else:
-            messages.warning(request, "There is something wrong!")
-            return redirect('adminPanelNewsCats')
-
-    # grabing all the categories
-    cat_list = NewsCategories.objects.all()
-
-    context = {
-        'category_list' : cat_list,
-    }
-
-    return render(request, 'backEnd/news_category.html', context)
+    return redirect('adminPanelNewsCats')
 
 # news categories & subcategories
 # @login_required(login_url='/login/user')
@@ -542,7 +532,7 @@ def adminPanel_addCoverNews(request):
         'main_cover_news_info' : main_cover_news_info,
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 # add main cover news
 # @login_required(login_url='/login/user')
@@ -552,13 +542,20 @@ def adminPanel_addMainCoverNews(request):
         img = request.FILES['main-cover-news-img']
         news_title = request.POST.get('cover_news_title')
         news_category = request.POST.get('select-cover-news-category')
+        cover_news_details = request.POST.get('cover_news_details')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
             if len(CoverNewsMain.objects.all()) <= 0:
-                main_cover_news_db = CoverNewsMain(cover_news_image=img, cover_news_title=news_title, cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                main_cover_news_db = CoverNewsMain(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory = "Not Selected",
+                    cover_news_details     = cover_news_details,
+                )
                 main_cover_news_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -568,7 +565,13 @@ def adminPanel_addMainCoverNews(request):
                 for x in main_cover_news_db:
                     fs.delete(x.cover_news_image.name)
                     x.delete()
-                save_main_cover_news_to_db = CoverNewsMain(cover_news_image=img, cover_news_title=news_title,cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                save_main_cover_news_to_db = CoverNewsMain(
+                    cover_news_image       =img,
+                    cover_news_title       =news_title,
+                    cover_news_category    =news_category,
+                    cover_news_subcategory ="Not Selected",
+                    cover_news_details     = cover_news_details
+                )
                 save_main_cover_news_to_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -581,7 +584,7 @@ def adminPanel_addMainCoverNews(request):
 
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 
 # Edit main cover news
@@ -596,8 +599,9 @@ def adminPanel_editMainCoverNews(request, pk):
     news_categories = NewsCategories.objects.all()
 
     if request.method == "POST":
-        news_title = request.POST.get('edit_cover_news_title')
+        news_title    = request.POST.get('edit_cover_news_title')
         news_category = request.POST.get('edit-select-cover-news-category')
+        news_details  = request.POST.get('edit_cover_news_details')
 
         try:
             fs = FileSystemStorage()
@@ -613,9 +617,10 @@ def adminPanel_editMainCoverNews(request, pk):
 
                 update_db.cover_news_image = img
                 update_db.cover_news_title = news_title
+                update_db.cover_news_details  = news_details
                 update_db.cover_news_category = news_category
                 update_db.save()
-                messages.success(request, "Update main cover news!")
+                messages.success(request, "Updated main cover news!")
                 return redirect('adminPanelAddCoverNews')
             else:
                 messages.success(request, "Only images(.jpeg, .jpg, .png) are allowed!")
@@ -623,6 +628,7 @@ def adminPanel_editMainCoverNews(request, pk):
         except:
             update_db = CoverNewsMain.objects.filter(pk=pk).first()
             update_db.cover_news_title = news_title
+            update_db.cover_news_details = news_details
             update_db.cover_news_category = news_category
             update_db.save()
             messages.success(request, "Update main cover news!")
@@ -645,6 +651,7 @@ def adminPanel_addCoverNewsOne(request):
     if request.method == "POST":
         img = request.FILES['cover_news_one']
         news_title = request.POST.get('cover_news_one_title')
+        news_details = request.POST.get('cover_news_one_details')
         news_category = request.POST.get('select-cover-news-category')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
@@ -652,7 +659,13 @@ def adminPanel_addCoverNewsOne(request):
 
         if img_extension[1] in valid_file_extension:
             if len(CoverNews1.objects.all()) <= 0:
-                cover_news_one_db = CoverNews1(cover_news_image=img, cover_news_title=news_title, cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                cover_news_one_db = CoverNews1(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_details     = news_details,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory ="Not Selected",
+                )
                 cover_news_one_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -662,7 +675,13 @@ def adminPanel_addCoverNewsOne(request):
                 for x in cover_news_one_db:
                     fs.delete(x.cover_news_image.name)
                     x.delete()
-                save_cover_news_one_to_db = CoverNews1(cover_news_image=img, cover_news_title=news_title,cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                save_cover_news_one_to_db = CoverNews1(
+                    cover_news_image=img,
+                    cover_news_title=news_title,
+                    cover_news_details=news_details,
+                    cover_news_category=news_category,
+                    cover_news_subcategory="Not Selected"
+                )
                 save_cover_news_one_to_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -675,7 +694,7 @@ def adminPanel_addCoverNewsOne(request):
 
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 
 # Edit cover news one
@@ -691,6 +710,7 @@ def adminPanel_editCoverNewsOne(request, pk):
 
     if request.method == "POST":
         news_title = request.POST.get('edit_cover_news_title')
+        news_details = request.POST.get('edit_cover_news_details')
         news_category = request.POST.get('edit-select-cover-news-category')
 
         try:
@@ -707,9 +727,10 @@ def adminPanel_editCoverNewsOne(request, pk):
 
                 update_db.cover_news_image = img
                 update_db.cover_news_title = news_title
+                update_db.cover_news_details = news_details
                 update_db.cover_news_category = news_category
                 update_db.save()
-                messages.success(request, "Update main cover news!")
+                messages.success(request, "Updated successfully!")
                 return redirect('adminPanelCoverNewsList')
             else:
                 messages.success(request, "Only images(.jpeg, .jpg, .png) are allowed!")
@@ -717,9 +738,10 @@ def adminPanel_editCoverNewsOne(request, pk):
         except:
             update_db = CoverNews1.objects.filter(pk=pk).first()
             update_db.cover_news_title = news_title
+            update_db.cover_news_details = news_details
             update_db.cover_news_category = news_category
             update_db.save()
-            messages.success(request, "Update main cover news!")
+            messages.success(request, "Updated successfully!")
             return redirect('adminPanelCoverNewsList')
 
     context = {
@@ -736,8 +758,9 @@ def adminPanel_editCoverNewsOne(request, pk):
 def adminPanel_addCoverNewsTwo(request):
 
     if request.method == "POST":
-        img = request.FILES['cover_news_two']
-        news_title = request.POST.get('cover_news_two_title')
+        img           = request.FILES['cover_news_two']
+        news_title    = request.POST.get('cover_news_two_title')
+        news_details  = request.POST.get('cover_news_two_details')
         news_category = request.POST.get('select_cover_news_two_category')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
@@ -745,7 +768,13 @@ def adminPanel_addCoverNewsTwo(request):
 
         if img_extension[1] in valid_file_extension:
             if len(CoverNews2.objects.all()) <= 0:
-                cover_news_two_db = CoverNews2(cover_news_image=img, cover_news_title=news_title, cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                cover_news_two_db = CoverNews2(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_details     = news_details,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory = "Not Selected"
+                )
                 cover_news_two_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -755,7 +784,13 @@ def adminPanel_addCoverNewsTwo(request):
                 for x in cover_news_two_db:
                     fs.delete(x.cover_news_image.name)
                     x.delete()
-                save_cover_news_two_to_db = CoverNews2(cover_news_image=img, cover_news_title=news_title,cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                save_cover_news_two_to_db = CoverNews2(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_details     = news_details,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory = "Not Selected"
+                )
                 save_cover_news_two_to_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -768,7 +803,7 @@ def adminPanel_addCoverNewsTwo(request):
 
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 
 # Edit cover news two
@@ -784,6 +819,7 @@ def adminPanel_editCoverNewsTwo(request, pk):
 
     if request.method == "POST":
         news_title = request.POST.get('edit_cover_news_title')
+        news_details = request.POST.get('edit_cover_news_details')
         news_category = request.POST.get('edit-select-cover-news-category')
 
         try:
@@ -800,9 +836,10 @@ def adminPanel_editCoverNewsTwo(request, pk):
 
                 update_db.cover_news_image = img
                 update_db.cover_news_title = news_title
+                update_db.cover_news_details = news_details
                 update_db.cover_news_category = news_category
                 update_db.save()
-                messages.success(request, "Update main cover news!")
+                messages.success(request, "Updated main cover news!")
                 return redirect('adminPanelCoverNewsList')
             else:
                 messages.warning(request, "Only images(.jpeg, .jpg, .png) are allowed!")
@@ -810,9 +847,10 @@ def adminPanel_editCoverNewsTwo(request, pk):
         except:
             update_db = CoverNews2.objects.filter(pk=pk).first()
             update_db.cover_news_title = news_title
+            update_db.cover_news_details = news_details
             update_db.cover_news_category = news_category
             update_db.save()
-            messages.success(request, "Update main cover news!")
+            messages.success(request, "Updated main cover news!")
             return redirect('adminPanelCoverNewsList')
 
     context = {
@@ -832,6 +870,7 @@ def adminPanel_addCoverNewsThree(request):
     if request.method == "POST":
         img = request.FILES['cover_news_three']
         news_title = request.POST.get('cover_news_three_title')
+        news_details = request.POST.get('cover_news_three_details')
         news_category = request.POST.get('select_cover_news_three_category')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
@@ -839,7 +878,13 @@ def adminPanel_addCoverNewsThree(request):
 
         if img_extension[1] in valid_file_extension:
             if len(CoverNews3.objects.all()) <= 0:
-                cover_news_three_db = CoverNews3(cover_news_image=img, cover_news_title=news_title, cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                cover_news_three_db = CoverNews3(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_details     = news_details,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory = "Not Selected"
+                )
                 cover_news_three_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -849,7 +894,13 @@ def adminPanel_addCoverNewsThree(request):
                 for x in cover_news_three_db:
                     fs.delete(x.cover_news_image.name)
                     x.delete()
-                save_cover_news_three_to_db = CoverNews3(cover_news_image=img, cover_news_title=news_title,cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                save_cover_news_three_to_db = CoverNews3(
+                    cover_news_image=img,
+                    cover_news_title=news_title,
+                    cover_news_details=news_details,
+                    cover_news_category=news_category,
+                    cover_news_subcategory="Not Selected"
+                )
                 save_cover_news_three_to_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -862,7 +913,7 @@ def adminPanel_addCoverNewsThree(request):
 
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 
 # Edit cover news three
@@ -877,7 +928,8 @@ def adminPanel_editCoverNewsThree(request, pk):
     news_categories = NewsCategories.objects.all()
 
     if request.method == "POST":
-        news_title = request.POST.get('edit_cover_news_title')
+        news_title    = request.POST.get('edit_cover_news_title')
+        news_details  = request.POST.get('edit_cover_news_details')
         news_category = request.POST.get('edit-select-cover-news-category')
 
         try:
@@ -894,6 +946,7 @@ def adminPanel_editCoverNewsThree(request, pk):
 
                 update_db.cover_news_image = img
                 update_db.cover_news_title = news_title
+                update_db.cover_news_details = news_details
                 update_db.cover_news_category = news_category
                 update_db.save()
                 messages.success(request, "Updated cover news three!")
@@ -904,9 +957,10 @@ def adminPanel_editCoverNewsThree(request, pk):
         except:
             update_db = CoverNews3.objects.filter(pk=pk).first()
             update_db.cover_news_title = news_title
+            update_db.cover_news_details = news_details
             update_db.cover_news_category = news_category
             update_db.save()
-            messages.success(request, "Update cover news three!")
+            messages.success(request, "Updated cover news three!")
             return redirect('adminPanelCoverNewsList')
 
     context = {
@@ -926,6 +980,7 @@ def adminPanel_addCoverNewsFour(request):
     if request.method == "POST":
         img = request.FILES['cover_news_three']
         news_title = request.POST.get('cover_news_three_title')
+        news_details = request.POST.get('cover_news_three_details')
         news_category = request.POST.get('select_cover_news_three_category')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
@@ -933,7 +988,13 @@ def adminPanel_addCoverNewsFour(request):
 
         if img_extension[1] in valid_file_extension:
             if len(CoverNews4.objects.all()) <= 0:
-                cover_news_four_db = CoverNews4(cover_news_image=img, cover_news_title=news_title, cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                cover_news_four_db = CoverNews4(
+                    cover_news_image       = img,
+                    cover_news_title       = news_title,
+                    cover_news_details     = news_details,
+                    cover_news_category    = news_category,
+                    cover_news_subcategory = "Not Selected"
+                )
                 cover_news_four_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -943,7 +1004,13 @@ def adminPanel_addCoverNewsFour(request):
                 for x in cover_news_four_db:
                     fs.delete(x.cover_news_image.name)
                     x.delete()
-                save_cover_news_four_to_db = CoverNews4(cover_news_image=img, cover_news_title=news_title,cover_news_category=news_category, cover_news_subcategory="Not Selected")
+                save_cover_news_four_to_db = CoverNews4(
+                    cover_news_image=img,
+                    cover_news_title=news_title,
+                    cover_news_details=news_details,
+                    cover_news_category=news_category,
+                    cover_news_subcategory="Not Selected"
+                )
                 save_cover_news_four_to_db.save()
                 messages.success(request, "Saved successfully!")
                 return redirect('adminPanelAddCoverNews')
@@ -956,7 +1023,7 @@ def adminPanel_addCoverNewsFour(request):
 
     }
 
-    return render(request, "backEnd/add-cover-news.html", context)
+    return render(request, "backEnd/add-main-cover-news.html", context)
 
 
 # Edit cover news four
@@ -972,6 +1039,7 @@ def adminPanel_editCoverNewsFour(request, pk):
 
     if request.method == "POST":
         news_title = request.POST.get('edit_cover_news_title')
+        news_details = request.POST.get('edit_cover_news_details')
         news_category = request.POST.get('edit-select-cover-news-category')
 
         try:
@@ -988,9 +1056,10 @@ def adminPanel_editCoverNewsFour(request, pk):
 
                 update_db.cover_news_image = img
                 update_db.cover_news_title = news_title
+                update_db.cover_news_details = news_details
                 update_db.cover_news_category = news_category
                 update_db.save()
-                messages.success(request, "Updated cover news three!")
+                messages.success(request, "Updated Successfully!")
                 return redirect('adminPanelCoverNewsList')
             else:
                 messages.warning(request, "Only images(.jpeg, .jpg, .png) are allowed!")
@@ -998,9 +1067,10 @@ def adminPanel_editCoverNewsFour(request, pk):
         except:
             update_db = CoverNews4.objects.filter(pk=pk).first()
             update_db.cover_news_title = news_title
+            update_db.cover_news_details = news_details
             update_db.cover_news_category = news_category
             update_db.save()
-            messages.success(request, "Update cover news three!")
+            messages.success(request, "Updated Successfully!")
             return redirect('adminPanelCoverNewsList')
 
     context = {
@@ -1042,7 +1112,7 @@ def adminPanel_coverNewsList(request):
 def adminPanel_addMostRecentNews(request):
 
     # grabing all the most recent news from db
-    most_recent_news_list = MostRecent.objects.all().order_by("-pk")[:2]
+    most_recent_news_list = MostRecent.objects.all().order_by("-pk")[:6]
 
     if request.method == 'POST':
         news_img         = request.FILES['most_recent_img']
@@ -1276,35 +1346,59 @@ def adminPanel_addMainNews(request):
         news_title       = request.POST.get('main_news_news_title')
         news_description = request.POST.get('main_news_description')
         news_writer      = request.POST.get('news_writer')
+        print(news_sub_cat_id)
 
         file_extension = str(news_file).split('.')
         valid_extension = ['jpeg', 'jpg', 'png']
 
         if file_extension[1] in valid_extension:
+            if int(news_sub_cat_id) >= 0 and int(news_sub_cat_id) != 0:
+                # grabing news subcat model
+                news_subcat_db = NewsSubCategories.objects.filter(pk=news_sub_cat_id).first()
+                # finding the name of news category
+                news_cat_name = news_subcat_db.category.category_name
+                # finding the name of news subcategory name
+                news_subcat_name = news_subcat_db.subcategory_name
 
-            # grabing news subcat model
-            news_subcat_db = NewsSubCategories.objects.filter(pk=news_sub_cat_id).first()
-            # finding the name of news category
-            news_cat_name = news_subcat_db.category.category_name
-            # finding the name of news subcategory name
-            news_subcat_name = news_subcat_db.subcategory_name
+                main_news_db = NewsMain(
+                    news_image=news_file,
+                    news_title=news_title,
+                    news_description=news_description,
+                    news_writer=news_writer,
+                    news_visitors=0,
+                    news_comments=0,
+                    news_tags="null",
+                    news_category_name=news_cat_name,
+                    news_catid=news_cat_id,
+                    news_subcategory_name=news_subcat_name,
+                    news_subcatid=news_sub_cat_id
+                )
+                main_news_db.save()
+                messages.success(request, "News has been added!")
+                return redirect('adminPanelAddMainNews')
 
-            main_news_db = NewsMain(
-                news_image= news_file,
-                news_title= news_title,
-                news_description= news_description,
-                news_writer= news_writer,
-                news_visitors= 0,
-                news_comments= 0,
-                news_tags= "null",
-                news_category_name= news_cat_name,
-                news_catid= news_cat_id,
-                news_subcategory_name= news_subcat_name,
-                news_subcatid= news_sub_cat_id
-            )
-            main_news_db.save()
-            messages.success(request, "News has been added!")
-            return redirect('adminPanelAddMainNews')
+            else:
+                # grabing news subcat model
+                news_cat_db = NewsCategories.objects.filter(pk=news_cat_id).first()
+                print(news_cat_db)
+
+                main_news_db = NewsMain(
+                    news_image=news_file,
+                    news_title=news_title,
+                    news_description=news_description,
+                    news_writer=news_writer,
+                    news_visitors=0,
+                    news_comments=0,
+                    news_tags="null",
+                    news_category_name=news_cat_db.category_name,
+                    news_catid=news_cat_id,
+                    news_subcategory_name= "null",
+                    news_subcatid=news_sub_cat_id
+                )
+                main_news_db.save()
+                messages.success(request, "News has been added!")
+                return redirect('adminPanelAddMainNews')
+
         else:
             messages.warning(request, "Only images (.jpeg, jpg, png) are allowed!")
             return redirect('adminPanelAddMainNews')
@@ -1447,3 +1541,20 @@ def adminPanel_deleteMainNews(request, pk):
         return redirect('adminPanelMainNewsList')
 
     return redirect('adminPanelMainNewsList')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ****************** Don't touch ********************
+def important_info(request):
+    return render(request, 'backEnd/dont_touch.html')

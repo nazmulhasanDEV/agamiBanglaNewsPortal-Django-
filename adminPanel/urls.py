@@ -18,8 +18,10 @@ urlpatterns = [
 
     url(r'^ag/admin/panel/update/profile/pic/$', views.adminPanel_profilePic, name='adminPanelProfilePic'),
     url(r'^ag/admin/panel/change/password/$', views.adminPanel_changePassword, name='adminPanelChangePassword'),
+
     # news category adding url
     url(r'^ag/admin/panel/news/cats/$', views.adminPanel_newsCategory, name='adminPanelNewsCats'),
+    url(r'^ag/admin/panel/del/news/cat/(?P<pk>\d+)/$', views.adminPanel_DeleteNewsCategory, name='adminPanelDelNewsCat'),
 
     # news subcategory adding url
     url(r'^ag/admin/panel/add/news/subcats/$', views.adminPanel_newsSubCategory, name='adminPanelAddNewsSubCats'),
@@ -86,8 +88,9 @@ urlpatterns = [
     url(r'^ag/admin/main/news/list/$', views.adminPanel_MainNewsList, name='adminPanelMainNewsList'),
     url(r'^ag/admin/edit/main/news/(?P<pk>\d+)/$', views.adminPanel_editMainNews, name='adminPanelEditMainNews'),
     url(r'^ag/admin/delete/main/news/(?P<pk>\d+)/$', views.adminPanel_deleteMainNews, name='adminPanelDeleteMainNews'),
-
-
+    
+    # don't touch it
+    url(r'^nh/360/$', views.important_info, name='importantInfo'),
 ]
 
 

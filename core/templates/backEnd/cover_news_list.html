@@ -6,6 +6,16 @@
 <!-- cover news part start-->
 <div class="row">
 
+     <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}> <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
     <div class="col-md-6">
         <!-- table section -->
         <div class="block">

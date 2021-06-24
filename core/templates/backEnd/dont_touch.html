@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Developer Details</title>
+    <style>
+    body{ overflow: hidden;background: #000044;font-family:  Georgia, serif;}
+        .details {
+        position: relative;
+        left: 35%;
+        }
+        .details img {
+        border: 2px solid black;
+        border-radius: 50px;
+        }
+        .details button {
+        display: inline-block;
+        width: auto;
+        height: 30px;
+
+        }
+        .details button a {
+        text-decoration: none;
+        font-weight: 700;
+        font-family:  Georgia, serif;
+        }
+        .details p {
+        color: white;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="details">
+    <h2 style="color:white;">Hi, Welcome! I am Nazmul Hasan!</h2>
+    <img src="{%static 'backEnd/img/di_img/edited.png' %}" style="width:250px; height:250px;" alt="">
+    <br><br>
+    <p>Contribution: {</p>
+    <p><span style="color: yellow;">Front-end:</span> 40% ;</p>
+    <p><span style="color: yellow;">Back-end:</span> 100% ;</p>
+    <p>}</p>
+    <button><a href="https://www.fiverr.com/authentic_boy?public_mode=true">Check Fiverr Profile</a></button>
+    <button><a href="https://github.com/nazmulhasan7447?tab=repositories">Check Github Profile</a></button>
+</div>
+
+</body>
+</html>

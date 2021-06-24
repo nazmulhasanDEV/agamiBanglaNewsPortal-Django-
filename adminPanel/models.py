@@ -60,10 +60,11 @@ class EditorPublisher(models.Model):
 
 # cover news part for home page
 class CoverNewsMain(models.Model):
-    cover_news_image = models.ImageField()
-    cover_news_title = models.TextField(max_length=255, verbose_name="Cover News Title")
-    cover_news_category = models.CharField(max_length=255, default="")
+    cover_news_image       = models.ImageField()
+    cover_news_title       = models.TextField(max_length=255, verbose_name="Cover News Title")
+    cover_news_category    = models.CharField(max_length=255, default="")
     cover_news_subcategory = models.CharField(max_length=255, blank=True, null=True)
+    cover_news_details     = models.TextField(max_length=2000, blank=True, null=True)
     cover_news_added_at    = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -74,6 +75,7 @@ class CoverNews1(models.Model):
     cover_news_title = models.TextField(max_length=255, verbose_name="Cover News Title")
     cover_news_category = models.CharField(max_length=255, default="")
     cover_news_subcategory = models.CharField(max_length=255, blank=True, null=True)
+    cover_news_details = models.TextField(max_length=2000, blank=True, null=True)
     cover_news_added_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -85,6 +87,7 @@ class CoverNews2(models.Model):
     cover_news_title = models.TextField(max_length=255, verbose_name="Cover News Title")
     cover_news_category = models.CharField(max_length=255, default="")
     cover_news_subcategory = models.CharField(max_length=255, blank=True, null=True)
+    cover_news_details = models.TextField(max_length=2000, blank=True, null=True)
     cover_news_added_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -95,6 +98,7 @@ class CoverNews3(models.Model):
     cover_news_title = models.TextField(max_length=255, verbose_name="Cover News Title")
     cover_news_category = models.CharField(max_length=255, default="")
     cover_news_subcategory = models.CharField(max_length=255, blank=True, null=True)
+    cover_news_details = models.TextField(max_length=2000, blank=True, null=True)
     cover_news_added_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -105,6 +109,7 @@ class CoverNews4(models.Model):
     cover_news_title = models.TextField(max_length=255, verbose_name="Cover News Title")
     cover_news_category = models.CharField(max_length=255, default="")
     cover_news_subcategory = models.CharField(max_length=255, blank=True, null=True)
+    cover_news_details = models.TextField(max_length=2000, blank=True, null=True)
     cover_news_added_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -117,6 +122,7 @@ class MostRecent(models.Model):
     news_description = models.TextField(max_length=1000)
     news_writer      = models.CharField(max_length=70, blank=True, null=True)
     news_visitors    = models.IntegerField(blank=True, null=True)
+    news_details = models.TextField(max_length=2000, blank=True, null=True)
     news_added_at    = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -130,6 +136,7 @@ class MostPopular(models.Model):
     news_description = models.TextField(max_length=1000)
     news_writer = models.CharField(max_length=70, blank=True, null=True)
     news_visitors = models.IntegerField(blank=True, null=True)
+    news_details = models.TextField(max_length=2000, blank=True, null=True)
     news_added_at = models.DateField(auto_now_add=True)
 
     def __str__(self):

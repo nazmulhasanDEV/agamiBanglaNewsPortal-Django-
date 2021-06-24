@@ -1,0 +1,241 @@
+{% extends 'frontEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+	<!-- Breadcrumb -->
+	<div class="container">
+		<div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 m-tb-6">
+
+			</div>
+
+<!--			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">-->
+<!--				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">-->
+<!--				<button class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">-->
+<!--					<i class="zmdi zmdi-search"></i>-->
+<!--				</button>-->
+<!--			</div>-->
+		</div>
+	</div>
+
+
+	<!-- Post -->
+	<section class="bg0 p-b-55">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10 col-lg-8 p-b-80">
+					<div class="row">
+						{% for news in news_list_by_category %}
+						<div class="col-sm-6 p-r-25 p-r-15-sr991">
+							<!-- Item latest -->
+							<div class="m-b-45">
+								<a href="{% url 'abNewsDetails' pk=news.pk %}" class="wrap-pic-w hov1 trans-03">
+									<img src="{{news.news_image.url}}" style="height: 200px;" alt="IMG">
+								</a>
+
+								<div class="p-t-16">
+									<h5 class="p-b-5">
+										<a href="{% url 'abNewsDetails' pk=news.pk %}" class="f1-m-3 cl2 hov-cl10 trans-03">
+											{{news.news_title}}
+										</a>
+									</h5>
+
+<!--									<span class="cl8">-->
+<!--										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">-->
+<!--											by John Alvarado-->
+<!--										</a>-->
+
+<!--										<span class="f1-s-3 m-rl-3">-->
+<!--											- -->
+<!--										</span>-->
+
+<!--										<span class="f1-s-3">-->
+<!--											Feb 18-->
+<!--										</span>-->
+<!--									</span>-->
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+
+					<!-- Pagination -->
+<!--					<div class="flex-wr-s-c m-rl&#45;&#45;7 p-t-15">-->
+<!--						<a href="#" class="flex-c-c pagi-item hov-btn1 trans-03 m-all-7 pagi-active">1</a>-->
+<!--						<a href="#" class="flex-c-c pagi-item hov-btn1 trans-03 m-all-7">2</a>-->
+<!--					</div>-->
+				</div>
+
+				<div class="col-md-10 col-lg-4">
+					<div class="p-l-10 p-rl-0-sr991 p-b-20">
+						<!-- test most recent -->
+						<div class="tab01 p-b-20">
+							<div class="tab01-head how2 how2-cl1 bocl12 flex-s-c m-r-10 m-r-0-sr991" id="most-recent-pop">
+
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tab1-recent" role="tab">সর্বশেষ</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" data-toggle="tab" href="#tab1-popular" role="tab">সর্বাধিক</a>
+									</li>
+								</ul>
+							</div>
+
+
+							<!-- Tab panes -->
+							<div class="tab-content p-t-35">
+								<!-- - -->
+								<div class="tab-pane fade show most-recent-pop-news active" id="tab1-recent" role="tabpanel">
+									<div class="row">
+										<div class="col-sm-12 p-r-25 p-r-15-sr991">
+											<!-- Item post -->
+											{% for news in most_recent_news %}
+											<div class="flex-wr-sb-s m-b-8">
+												<div class="size-w-0">
+													<h5 class="p-b-5">
+														<a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+															<img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}" style="width:25px;height:25px;" alt="">
+															{{news.news_title}}
+														</a>
+													</h5>
+												</div>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+
+								<!-- - -->
+								<div class="tab-pane fade most-recent-pop-news" id="tab1-popular" role="tabpanel">
+									<div class="row">
+										<div class="col-sm-12 p-r-25 p-r-15-sr991">
+											<!-- Item post -->
+											{% for news in most_popular_news %}
+											<div class="flex-wr-sb-s m-b-8">
+												<div class="size-w-0">
+													<h5 class="p-b-5">
+														<a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+															<img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}" style="width:25px;height:25px;" alt="">
+															{{news.news_title}}
+														</a>
+													</h5>
+
+													<!-- <span class="cl8">
+														<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+															Celebrity
+														</a>
+
+														<span class="f1-s-3 m-rl-3">
+															-
+														</span>
+
+														<span class="f1-s-3">
+															Feb 12
+														</span>
+													</span> -->
+												</div>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- test most recent ends -->
+
+						<!--  -->
+						<div class="flex-c-s p-t-8">
+							<a href="#">
+								<!-- <img class="max-w-full" src="images/banner-02.jpg" style="visibility: hidden!important; display: none!important;" alt="IMG"> -->
+							</a>
+						</div>
+						<br><br>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+
+<!--&lt;!&ndash; categories &ndash;&gt;-->
+<!--	<section class="bg0 p-b-55">-->
+<!--		<div class="container">-->
+<!--			<div class="row justify-content-center">-->
+<!--				<div class="col-md-10 col-lg-8 p-b-80">-->
+<!--					<div class="row">-->
+<!--						<div class="col-sm-6 p-r-25 p-r-15-sr991">-->
+<!--							&lt;!&ndash; Item latest &ndash;&gt;-->
+<!--							<div class="m-b-45">-->
+<!--								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">-->
+<!--									<img src="{% static 'frontEnd/images/entertaiment-10.jpg' %}" alt="IMG">-->
+<!--								</a>-->
+
+<!--								<div class="p-t-16">-->
+<!--									<h5 class="p-b-5">-->
+<!--										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">-->
+<!--											You wish lorem ipsum dolor sit amet consectetur-->
+<!--										</a>-->
+<!--									</h5>-->
+
+<!--&lt;!&ndash;									<span class="cl8">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">&ndash;&gt;-->
+<!--&lt;!&ndash;											by John Alvarado&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;										<span class="f1-s-3 m-rl-3">&ndash;&gt;-->
+<!--&lt;!&ndash;											- &ndash;&gt;-->
+<!--&lt;!&ndash;										</span>&ndash;&gt;-->
+
+<!--&lt;!&ndash;										<span class="f1-s-3">&ndash;&gt;-->
+<!--&lt;!&ndash;											Feb 18&ndash;&gt;-->
+<!--&lt;!&ndash;										</span>&ndash;&gt;-->
+<!--&lt;!&ndash;									</span>&ndash;&gt;-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+
+<!--						<div class="col-sm-6 p-r-25 p-r-15-sr991">-->
+<!--							&lt;!&ndash; Item latest &ndash;&gt;-->
+<!--							<div class="m-b-45">-->
+<!--								<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">-->
+<!--									<img src="{% static 'frontEnd/images/entertaiment-11.jpg' %}" alt="IMG">-->
+<!--								</a>-->
+
+<!--								<div class="p-t-16">-->
+<!--									<h5 class="p-b-5">-->
+<!--										<a href="blog-detail-01.html" class="f1-m-3 cl2 hov-cl10 trans-03">-->
+<!--											You wish lorem ipsum dolor sit amet consectetur-->
+<!--										</a>-->
+<!--									</h5>-->
+
+<!--&lt;!&ndash;									<span class="cl8">&ndash;&gt;-->
+<!--&lt;!&ndash;										<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">&ndash;&gt;-->
+<!--&lt;!&ndash;											by John Alvarado&ndash;&gt;-->
+<!--&lt;!&ndash;										</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;										<span class="f1-s-3 m-rl-3">&ndash;&gt;-->
+<!--&lt;!&ndash;											- &ndash;&gt;-->
+<!--&lt;!&ndash;										</span>&ndash;&gt;-->
+
+<!--&lt;!&ndash;										<span class="f1-s-3">&ndash;&gt;-->
+<!--&lt;!&ndash;											Feb 16&ndash;&gt;-->
+<!--&lt;!&ndash;										</span>&ndash;&gt;-->
+<!--&lt;!&ndash;									</span>&ndash;&gt;-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
+<!--	</section>-->
+
+
+{% endblock %}

@@ -1065,11 +1065,11 @@ li.respon-sub-menu > .sub-menu .sub-menu {
 .browse_category_list li{
   display: inline-block;
   position: relative;
-  padding-left: 15px;
+  padding-left: 10px;
 }
 .browse_category_list li a {
   color:rgb(172, 172, 172);
-  font-size: 16px;
+  font-size: 12px;
 }
 
 
@@ -1087,11 +1087,12 @@ li.respon-sub-menu > .sub-menu .sub-menu {
 }
 .footer-nav-privacy-policy-term-condition ul li{
   display: inline-block;
+  position: relative;
   padding-left: 10px;
 }
 .footer-nav-privacy-policy-term-condition ul li a{
   color: rgb(172, 172, 172);
-  font-size: 16px;
+  font-size: 12px;
 }
 
 #editor-publisher-section {

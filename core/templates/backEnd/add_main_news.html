@@ -102,7 +102,7 @@ var csrf = $("input[name='csrfmiddlewaretoken']").val();
 news_cat.addEventListener('change', function(){
 // function start
 
-news_subcat.innerHTML = "<option>Please select sub-category</option>";
+news_subcat.innerHTML = "<option value='0'>Please select sub-category</option>";
 
 //ajax starts
 $.ajax({

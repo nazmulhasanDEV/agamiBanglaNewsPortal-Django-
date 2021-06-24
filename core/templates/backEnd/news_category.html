@@ -101,8 +101,8 @@
                 <td class="text-center"><a href="{% url 'adminPanelNewsSubCatList' pk=category.pk %}" class="label label-success">See Sub-categories</a></td>
                 <td class="text-center">
                     <div class="btn-group btn-group-xs">
-                        <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i> Edit</a>
-                        <a href="javascript:void(0)" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+<!--                        <a href="javascript:void(0)" data-toggle="tooltip" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i> Edit</a>-->
+                        <a href="{% url 'adminPanelDelNewsCat' pk=category.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
                     </div>
                 </td>
             </tr>

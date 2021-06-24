@@ -39,7 +39,7 @@
 					{% if site_logo %}
 					<a href="/"><img src="{{site_logo.site_logo.url}}" alt="IMG-LOGO"></a>
 					{% else %}
-					<a href="index.html">ADD SITE LOGO</a>
+					<a href="/">ADD SITE LOGO</a>
 					{% endif %}
 				</div>
 
@@ -55,43 +55,14 @@
 			<div class="menu-mobile">
 				<ul class="main-menu-m">
 					<li>
-						<a href="index.html" id="nav_home_mobile_version">প্রচ্ছদ</a>
+						<a href="/" id="nav_home_mobile_version">প্রচ্ছদ</a>
 					</li>
 
+					{% for news_cat in news_category_model %}
 					<li>
-						<a href="category-01.html">সংবাদ</a>
+						<a href="{% url 'abNewsListByCategory' pk=news_cat.pk %}">{{ news_cat.category_name }}</a>
 					</li>
-
-					<li>
-						<a href="category-02.html">অর্থনীতি</a>
-					</li>
-
-					<li>
-						<a href="category-01.html">সারাবিশ্ব</a>
-					</li>
-
-					<li>
-						<a href="category-02.html">বিনোদন</a>
-					</li>
-
-					<li>
-						<a href="category-01.html">খেলা</a>
-					</li>
-
-					<li>
-						<a href="category-02.html">শিক্ষাঙ্গন</a>
-					</li>
-
-					<li>
-						<a href="category-02.html">ফিচার</a>
-					</li>
-					<li>
-						<a href="category-02.html">ছবি</a>
-					</li>
-
-					<li>
-						<a href="category-02.html">অন্যান্য</a>
-					</li>
+					{% endfor %}
 
 				</ul>
 			</div>
@@ -130,43 +101,47 @@
 
 						<ul class="main-menu">
 							<li class="main-menu-active">
-								<a href="index.html" id="nav_home">প্রচ্ছদ</a>
+								<a href="/" id="nav_home">প্রচ্ছদ</a>
 								<!-- <ul class="sub-menu">
 									<li><a href="index.html">Homepage v1</a></li>
 								</ul> -->
 							</li>
 
+							{% for news_cat in news_category_model %}
+<!--							{% if news_cat.pk in list_of_cat_pk_which_has_atleast_one_news %}-->
 							<li class="mega-menu-item">
-								<a href="category-01.html">সংবাদ</a>
+								<a href="{% url 'abNewsListByCategory' pk=news_cat.pk %}">{{ news_cat.category_name }}</a>
 							</li>
+<!--							{% endif %}-->
+							{% endfor %}
 
-							<li class="mega-menu-item">
-								<a href="category-02.html">অর্থনীতি </a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-02.html">অর্থনীতি </a>-->
+<!--							</li>-->
 
-							<li class="mega-menu-item">
-								<a href="category-01.html">সারাবিশ্ব</a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-01.html">সারাবিশ্ব</a>-->
+<!--							</li>-->
 
-							<li class="mega-menu-item">
-								<a href="category-02.html">বিনোদন</a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-02.html">বিনোদন</a>-->
+<!--							</li>-->
 
-							<li class="mega-menu-item">
-								<a href="category-01.html">খেলা</a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-01.html">খেলা</a>-->
+<!--							</li>-->
 
-							<li class="mega-menu-item">
-								<a href="category-01.html">শিক্ষাঙ্গন</a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-01.html">শিক্ষাঙ্গন</a>-->
+<!--							</li>-->
 
-							<li class="mega-menu-item">
-								<a href="category-02.html">ফিচার</a>
-							</li>
+<!--							<li class="mega-menu-item">-->
+<!--								<a href="category-02.html">ফিচার</a>-->
+<!--							</li>-->
 
-							<li class="">
-								<a href="gallery.html" id="nav_gallery">ছবি</a>
-							</li>
+<!--							<li class="">-->
+<!--								<a href="gallery.html" id="nav_gallery">ছবি</a>-->
+<!--							</li>-->
 
 						</ul>
 					</nav>
@@ -187,38 +162,40 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="footer-nav-bar-list">
-							<h5 class="f1-m-7 browse-by-category-title">Browse by category</h5>
+							<h5 class="f1-m-7 browse-by-category-title">আরও ব্রাউজ করুন</h5>
 							<ul class="browse_category_list">
-								<li><a href="#">category1</a></li>
+								<li><a href="/">প্রচ্ছদ</a></li>
 								<li>|</li>
-								<li><a href="#">category1</a></li>
+								<li><a href="#">সংবাদ</a></li>
 								<li>|</li>
-								<li><a href="#">category1</a></li>
+								<li><a href="#">অর্থনীতি</a></li>
 								<li>|</li>
-								<li><a href="#">category1</a></li>
+								<li><a href="#">সারাবিশ্ব</a></li>
 								<li>|</li>
-								<li><a href="#">category1</a></li>
+								<li><a href="#">খেলা</a></li>
 								<li>|</li>
-								<li><a href="#">category1</a></li>
+								<li><a href="#">বিনোদন</a></li>
+								<li>|</li>
+								<li><a href="#">ফিচার</a></li>
 							</ul>
 						</div>
 					</div>
 
 					<div class="col-md-4">
 						<div class="footer-nav-privacy-policy-term-condition">
-							<h5 class="privacy-policy-term-condition-title">hihihi</h5>
+							<h5 class="privacy-policy-term-condition-title">some txt</h5>
 						<ul>
-							<li><a href="#">category1</a></li>
+							<li><a href="#">যোগাযোগ</a></li>
 							<li>|</li>
-							<li><a href="#">category1</a></li>
+							<li><a href="#">গোপনীয়তা নীতি</a></li>
 							<li>|</li>
-							<li><a href="#">category1</a></li>
+							<li><a href="#">শর্তাবলী</a></li>
 							<li>|</li>
-							<li><a href="#">category1</a></li>
+							<li><a href="#">আগামী বাংলা সম্পর্কে</a></li>
 							<li>|</li>
-							<li><a href="#">category1</a></li>
+							<li><a href="#">কুকি নীতি</a></li>
 							<li>|</li>
-							<li><a href="#">category1</a></li>
+<!--							<li><a href="#">কমিউনিটি গাইডলাইন</a></li>-->
 						</ul>
 						</div>
 					</div>
@@ -238,7 +215,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<h5 class="text-center">Mominul Haque</h5>
+										<h5 class="text-center">{{editor_publisher.editor_name}}</h5>
 									</div>
 								</div>
 							</div>
@@ -255,7 +232,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<h5 class="text-center">Mominul Haque</h5>
+										<h5 class="text-center">{{editor_publisher.publisher_name}}</h5>
 									</div>
 								</div>
 							</div>
@@ -310,7 +287,7 @@
 	</footer>
 
 	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+	<div class="btn-back-to-top" id="myBtn" style="background:black!important;">
 		<span class="symbol-btn-back-to-top">
 			<span class="fas fa-angle-up"></span>
 		</span>
