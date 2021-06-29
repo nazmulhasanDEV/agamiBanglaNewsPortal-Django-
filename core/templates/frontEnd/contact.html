@@ -1,0 +1,121 @@
+{% extends 'frontEnd/index.html' %}
+{% load static %}
+
+{% block main_content %}
+
+
+<!-- Breadcrumb -->
+	<div class="container">
+		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 m-tb-6">
+				<a href="index.html" class="breadcrumb-item f1-s-3 cl9">
+					Home
+				</a>
+
+				<span class="breadcrumb-item f1-s-3 cl9">
+					Contact Us
+				</span>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Page heading -->
+	<div class="container p-t-4 p-b-40">
+		<h2 class="f1-l-1 cl2">
+			Contact Us
+		</h2>
+	</div>
+
+	<!-- Content -->
+
+ <!-- Django message frameword -->
+    {% if messages %}
+    {% for message in messages %}
+    <ul class="alert alert-{{ message.tags }} alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4{% if message.tags %} class="text-{{ message.tags }} text-center"{% endif %}>
+        <strong>{{message}}</strong> </h4>
+    </ul>
+    {% endfor %}
+    {% endif %}
+
+
+
+	<section class="bg0 p-b-60">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-8 p-b-80">
+					<div class="p-r-10 p-r-0-sr991">
+						<form action="{%url 'abContactUs' %}" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="name" placeholder="Name*" required>
+
+							<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="email" name="email" placeholder="Email*" required>
+
+							<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="msg" placeholder="Your Message" required></textarea>
+
+							<button type="submit" class="size-a-20 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">
+								Send
+							</button>
+						</form>
+					</div>
+				</div>
+
+				<!-- Sidebar -->
+				<div class="col-md-5 col-lg-4 p-b-80">
+					<div class="p-l-10 p-rl-0-sr991">
+						<!-- Popular Posts -->
+						<div>
+							<div class="how2 how2-cl4 flex-s-c">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									Contact Information
+								</h3>
+							</div>
+
+							<ul class="p-t-35">
+								<li class="flex-wr-sb-s p-b-10">
+
+									<div class="size-w-11">
+										<h6 class="p-b-2">
+											<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03" style="font-size:18px;">
+												Address: <span style="font-size:12px!important;"><strong>{{contact_info_db.address1}}
+												{{contact_info_db.address2}}</strong></span>
+											</a>
+										</h6>
+
+									</div>
+								</li>
+								<li class="flex-wr-sb-s p-b-10">
+
+									<div class="size-w-11">
+										<h6 class="p-b-2">
+											<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03" style="font-size:18px;">
+												Email: <span style="font-size:12px!important;"><strong>{{contact_info_db.email}}</strong></span>
+											</a>
+										</h6>
+
+									</div>
+								</li>
+								<li class="flex-wr-sb-s p-b-10">
+
+									<div class="size-w-11">
+										<h6 class="p-b-2">
+											<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03" style="font-size:18px;">
+												Phone: <span style="font-size:12px!important;"><strong>{{contact_info_db.phone}}</strong></span>
+											</a>
+										</h6>
+
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+{% endblock %}

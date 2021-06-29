@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-mu9b^ju8hn5sq6q&rk^b3xh$x(m2^&9o_*5hp$%4vpw1x6^d09
 DEBUG = True
 
 # ALLOWED_HOSTS = [".herokuapp.com"]
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'core',
     'user',
     'adminPanel',
+
+    # ckeditor
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +83,7 @@ WSGI_APPLICATION = 'agami_bangla.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': str(BASE_DIR / 'db.sqlite3'),
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }

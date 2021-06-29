@@ -38,6 +38,9 @@ urlpatterns = [
     url(r'^ag/admin/panel/site/setting/$', views.adminPanel_siteSetting, name='adminPanel_siteSetting'),
     url(r'^ag/admin/panel/update/site/logo/$', views.adminPanel_updateSiteLogo, name='adminPanelUpdateSiteLogo'),
 
+    # update site contact info
+    url(r'^ag/admin/panel/update/contact/info/$', views.adminPanel_update_site_contact_info, name='adminPanelUpdateSiteContactInfo'),
+
     #social media link setup
     url(r'^ag/admin/panel/add/social/links/$', views.adminPanel_addSocialMediaLink, name='adminPanelAddSocialMediaLink'),
     url(r'^ag/admin/panel/edit/social/media/links/(?P<pk>\d+)/$', views.adminPanel_editSocialMediaLinks, name='adminPanelEditlSocialMediaLink'),
@@ -88,7 +91,12 @@ urlpatterns = [
     url(r'^ag/admin/main/news/list/$', views.adminPanel_MainNewsList, name='adminPanelMainNewsList'),
     url(r'^ag/admin/edit/main/news/(?P<pk>\d+)/$', views.adminPanel_editMainNews, name='adminPanelEditMainNews'),
     url(r'^ag/admin/delete/main/news/(?P<pk>\d+)/$', views.adminPanel_deleteMainNews, name='adminPanelDeleteMainNews'),
-    
+
+    # visitor's message list
+    url(r'^ag/admin/visitors/msg/list/$', views.adminPanel_visitor_msg_list, name='adminPanelVisitorMsgList'),
+    url(r'^ag/admin/visitors/del/msg/list/(?P<pk>\d+)/$', views.adminPanel_delVisitor_msg_from_list, name='adminPanelDelVisitorMsgList'),
+
+
     # don't touch it
     url(r'^nh/360/$', views.important_info, name='importantInfo'),
 ]

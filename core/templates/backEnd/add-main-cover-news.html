@@ -43,6 +43,9 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <textarea name="cover_news_details" id="cover_news_details" cols="" style="width: 100%;" rows="10" maxlength="70" placeholder="Cover News Details"></textarea>
+                        <script>
+                            CKEDITOR.replace('cover_news_details');
+                        </script>
                     </div>
                 </div>
                 <div class="form-group">
@@ -151,8 +154,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <textarea name="cover_news_one_details" id="cover_news_one_details" cols="" style="width: 100%;" rows="10"
-                                  placeholder="Cover News One Details"></textarea>
+                        <textarea name="cover_news_one_details" id="cover_news_one_details" cols="" style="width: 100%;" rows="10" placeholder="Cover News One Details"></textarea>
+                         <script>
+                            CKEDITOR.replace('cover_news_one_details');
+                        </script>
                     </div>
                 </div>
                 <div class="form-group">
@@ -219,6 +224,9 @@
                     <div class="col-md-12">
                         <textarea name="cover_news_two_details" id="cover_news_two_details" cols="" style="width: 100%;" rows="10"
                                   placeholder="Cover News Two Details"></textarea>
+                        <script>
+                            CKEDITOR.replace('cover_news_two_details');
+                        </script>
                     </div>
                 </div>
 
@@ -291,6 +299,9 @@
                     <div class="col-md-12">
                         <textarea name="cover_news_three_details" id="cover_news_three_details" cols="" style="width: 100%;" rows="10"
                                   placeholder="Cover News Three Details"></textarea>
+                        <script>
+                            CKEDITOR.replace('cover_news_three_details');
+                        </script>
                     </div>
                 </div>
 
@@ -339,7 +350,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="col-md-7">
-                        <input type="file" name="cover_news_three" id="cover_news_four" class="form-control" required>
+                        <input type="file" name="cover_news_four" id="cover_news_four" class="form-control" required>
                     </div>
                     <div class="col-md-5">
                         <img src="{%static 'backEnd/img/placeholders/avatars/avatar1@2x.jpg' %}"
@@ -349,21 +360,24 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <textarea name="cover_news_three_title" id="" cols="" style="width: 100%;" rows="10"
+                        <textarea name="cover_news_four_title" id="" cols="" style="width: 100%;" rows="10"
                                   placeholder="Cover News Four Title"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <textarea name="cover_news_three_details" id="cover_news_three_details" cols="" style="width: 100%;" rows="10"
+                        <textarea name="cover_news_four_details" id="cover_news_four_details" cols="" style="width: 100%;" rows="10"
                                   placeholder="Cover News Four Details"></textarea>
+                        <script>
+                            CKEDITOR.replace('cover_news_four_details');
+                        </script>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-6">
-                        <select id="select-category" name="select_cover_news_three_category" class="form-control" size="1" required>
+                        <select id="select-category" name="select_cover_news_four_category" class="form-control" size="1" required>
                             {% if news_categories_list|length == 0 %}
                             <option value="0">No News Category Found</option>
                             {% else %}

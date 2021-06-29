@@ -28,6 +28,9 @@
                     <div class="col-xs-12">
                         <textarea name="breaking-news" id="breaking-news" cols="0" rows="10" placeholder="Add breaking news..." maxlength="75" style="width: 100%;" required></textarea>
                         <p><span>Characters (maximum:75):</span> <span id="number_of_characters"></span></p>
+                        <script>
+                            CKEDITOR.replace('breaking-news');
+                        </script>
                     </div>
                 </div>
                 <div class="form-group">
@@ -81,7 +84,7 @@
             {% for br_news in breaking_news_list %}
             <tr>
                 <td class="text-center">{{forloop.counter}}</td>
-                <td class="text-center">{{br_news.breaking_news}}</td>
+                <td class="text-center">{{br_news.breaking_news|safe}}</td>
                 <td class="text-center">{{br_news.added_at}}</td>
                 <td class="text-center">
                     <div class="btn-group btn-group-xs">

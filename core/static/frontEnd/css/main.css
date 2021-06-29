@@ -7,7 +7,28 @@ Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
 -------------------------------------------------------------------*/
 
+/* galler part */
+.cat_name p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+}
 
+#gallery_category {
+  background-color: #EDEDED;
+}
+.gallery_img a > img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.gallery_img a > p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  padding-top: 8px;
+  text-align: center;
+  color: black;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
@@ -1279,7 +1300,8 @@ a.breadcrumb-item:hover {
 .cl9 {color: #999;}
 .cl10 {color: #17b978;}
 .cl11 {color: #ccc;}
-.cl12 {color: #e71d69;}
+.cl12 {color: black;}
+/*.cl12 {color: #e71d69;}*/
 .cl13 {color: #15a752;}
 .cl14 {color: #e3724a;}
 .cl15 {color: #b2b2b2;}
@@ -1830,7 +1852,8 @@ a.breadcrumb-item:hover {
 }
 
 .how2-cl1::before {
-  background-color: #e71d69;
+  background-color: black;
+/*background-color: #e71d69;*/
 }
 
 .how2-cl2::before {
@@ -1860,6 +1883,13 @@ a.breadcrumb-item:hover {
 ==================================================================*/
 /*//////////////////////////////////////////////////////////////////
 [ Hover ]*/
+.add_border {
+width: 50px;
+height: 50px;
+padding: 15px;
+border-radius: 50%;
+text-align: center;
+}
 
 .hov-cl0:hover {color: #fff;}
 .hov-bg0:hover {background-color: #fff;}

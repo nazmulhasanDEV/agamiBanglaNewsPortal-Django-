@@ -25,6 +25,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{%static 'frontEnd/css/main.css' %}">
 <!--===============================================================================================-->
+
 </head>
 <body class="animsition">
 
@@ -57,11 +58,17 @@
 					<li>
 						<a href="/" id="nav_home_mobile_version">প্রচ্ছদ</a>
 					</li>
-
+<!--news_cat.pk in list_of_cat_pk_which_has_atleast_one_news and -->
 					{% for news_cat in news_category_model %}
+					{% if news_cat.pk not in category_list_which_has_no_subcat and news_cat.pk != 9 %}
 					<li>
-						<a href="{% url 'abNewsListByCategory' pk=news_cat.pk %}">{{ news_cat.category_name }}</a>
+						<a href="{% url 'abNewsListByCategoryPk' catid=news_cat.pk %}">{{ news_cat.category_name }}</a>
 					</li>
+					{% else %}
+					<li class="mega-menu-item">
+						<a href="{% url 'newsListByCatWhichHasNotSubcat' cat_id=news_cat.pk %}">{{ news_cat.category_name }}</a>
+					</li>
+					{% endif %}
 					{% endfor %}
 
 				</ul>
@@ -106,42 +113,20 @@
 									<li><a href="index.html">Homepage v1</a></li>
 								</ul> -->
 							</li>
-
+<!--news_cat.pk in list_of_cat_pk_which_has_atleast_one_news or-->
 							{% for news_cat in news_category_model %}
-<!--							{% if news_cat.pk in list_of_cat_pk_which_has_atleast_one_news %}-->
+
+							{% if news_cat.pk not in category_list_which_has_no_subcat %}
 							<li class="mega-menu-item">
-								<a href="{% url 'abNewsListByCategory' pk=news_cat.pk %}">{{ news_cat.category_name }}</a>
+								<a href="{% url 'abNewsListByCategoryPk' catid=news_cat.pk %}">{{ news_cat.category_name }}</a>
 							</li>
-<!--							{% endif %}-->
+							{% else %}
+							<li class="mega-menu-item">
+								<a href="{% url 'newsListByCatWhichHasNotSubcat' cat_id=news_cat.pk %}">{{ news_cat.category_name }}</a>
+							</li>
+							{% endif %}
+
 							{% endfor %}
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-02.html">অর্থনীতি </a>-->
-<!--							</li>-->
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-01.html">সারাবিশ্ব</a>-->
-<!--							</li>-->
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-02.html">বিনোদন</a>-->
-<!--							</li>-->
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-01.html">খেলা</a>-->
-<!--							</li>-->
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-01.html">শিক্ষাঙ্গন</a>-->
-<!--							</li>-->
-
-<!--							<li class="mega-menu-item">-->
-<!--								<a href="category-02.html">ফিচার</a>-->
-<!--							</li>-->
-
-<!--							<li class="">-->
-<!--								<a href="gallery.html" id="nav_gallery">ছবি</a>-->
-<!--							</li>-->
 
 						</ul>
 					</nav>
@@ -162,30 +147,32 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="footer-nav-bar-list">
-							<h5 class="f1-m-7 browse-by-category-title">আরও ব্রাউজ করুন</h5>
+<!--							<h5 class="f1-m-7 browse-by-category-title">আরও ব্রাউজ করুন</h5>-->
 							<ul class="browse_category_list">
 								<li><a href="/">প্রচ্ছদ</a></li>
 								<li>|</li>
-								<li><a href="#">সংবাদ</a></li>
-								<li>|</li>
-								<li><a href="#">অর্থনীতি</a></li>
-								<li>|</li>
-								<li><a href="#">সারাবিশ্ব</a></li>
-								<li>|</li>
-								<li><a href="#">খেলা</a></li>
-								<li>|</li>
-								<li><a href="#">বিনোদন</a></li>
-								<li>|</li>
-								<li><a href="#">ফিচার</a></li>
+
+					{% for news_cat in news_category_model %}
+					{% if news_cat.pk not in category_list_which_has_no_subcat and news_cat.pk != 9 %}
+					<li>
+						<a href="{% url 'abNewsListByCategoryPk' catid=news_cat.pk %}">{{ news_cat.category_name }}</a>
+					</li>
+					{% else %}
+					<li class="mega-menu-item">
+						<a href="{% url 'newsListByCatWhichHasNotSubcat' cat_id=news_cat.pk %}">{{ news_cat.category_name }}</a>
+					</li>
+					{% endif %}
+					<li>|</li>
+					{% endfor %}
+
 							</ul>
 						</div>
 					</div>
 
 					<div class="col-md-4">
 						<div class="footer-nav-privacy-policy-term-condition">
-							<h5 class="privacy-policy-term-condition-title">some txt</h5>
 						<ul>
-							<li><a href="#">যোগাযোগ</a></li>
+							<li><a href="{% url 'abContactUs' %}">যোগাযোগ</a></li>
 							<li>|</li>
 							<li><a href="#">গোপনীয়তা নীতি</a></li>
 							<li>|</li>
@@ -210,7 +197,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<h5 class="text-center"><strong>Editor</strong></h5>
+										<h5 class="text-center"><strong>সম্পাদক</strong></h5>
 									</div>
 								</div>
 								<div class="row">
@@ -227,7 +214,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<h5 class="text-center"><strong>Publisher</strong></h5>
+										<h5 class="text-center"><strong>প্রকাশক</strong></h5>
 									</div>
 								</div>
 								<div class="row">
@@ -316,6 +303,10 @@
 	<script src="{%static 'frontEnd/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{%static 'frontEnd/js/main.js' %}"></script>
+
+<!--	google custom search engine-->
+<script async src="https://cse.google.com/cse.js?cx=abe5a979464181729"></script>
+
 
 </body>
 </html>

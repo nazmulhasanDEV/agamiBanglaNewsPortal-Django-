@@ -26,6 +26,12 @@
     <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon152.png' %}" sizes="152x152">
     <link rel="apple-touch-icon" href="{%static 'backEnd/img/icon180.png' %}" sizes="180x180">
     <!-- END Icons -->
+
+<!--    ckeditor part -->
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+   <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+
+
     {% block jquery_link_block %}
 
     {% endblock %}
@@ -157,9 +163,27 @@
                                 <li>
                                     <a href="/ag/admin/panel/site/setting">Site Setting</a>
                                 </li>
+                                <li>
+                                    <a href="/ag/admin/panel/update/contact/info">update contact info</a>
+                                </li>
                             </ul>
                         </li>
 <!--                        Site setting ends-->
+
+<!--                        visitor's message -->
+                        <li>
+                            <a href="#" class="sidebar-nav-menu"><i
+                                    class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                                <i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span
+                                        class="sidebar-nav-mini-hide">Visitor's Message</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="/ag/admin/visitors/msg/list">visitor's message</a>
+                                </li>
+                            </ul>
+                        </li>
+<!--                        visitor's message ends-->
 
 <!--                        news settings -->
                         <li class="sidebar-header">

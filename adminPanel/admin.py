@@ -9,6 +9,9 @@ admin.site.register(SiteLogo)
 admin.site.register(SocialMediaLink)
 admin.site.register(EditorPublisher)
 
+# update site contact info
+admin.site.register(SiteContactInfo)
+
 # home page cover news part
 admin.site.register(CoverNewsMain)
 admin.site.register(CoverNews1)
@@ -22,3 +25,6 @@ admin.site.register(MostPopular)
 
 # main news model
 admin.site.register(NewsMain)
+
+# visitor's message
+admin.site.register(Visitor_message)

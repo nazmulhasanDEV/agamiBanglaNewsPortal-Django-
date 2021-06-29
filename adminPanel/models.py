@@ -9,6 +9,17 @@ class UserProfileImage(models.Model):
     def __str__(self):
         return str(self.user)
 
+
+# update contact info
+class SiteContactInfo(models.Model):
+    address1 = models.TextField(default='', blank=True, null=True)
+    address2 = models.TextField(default='', blank=True, null=True)
+    email    = models.CharField(default='', max_length=60)
+    phone    = models.CharField(default='', max_length=60)
+
+    def __str__(self):
+        return str(self.email) + str(self.pk)
+
 # news categories
 class NewsCategories(models.Model):
     category_name = models.CharField(default='', max_length=255, verbose_name="News Category Name")
@@ -160,3 +171,12 @@ class NewsMain(models.Model):
 
     def __str__(self):
         return "Main News: " + str(self.pk)
+
+# visitors message
+class Visitor_message(models.Model):
+    visitor_name = models.CharField(default='', max_length=60)
+    visitor_email = models.CharField(default='', max_length=60)
+    visitor_text = models.TextField(default='')
+
+    def __str__(self):
+        return self.visitor_name + str(self.pk)

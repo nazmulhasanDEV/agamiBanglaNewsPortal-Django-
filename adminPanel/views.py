@@ -10,7 +10,7 @@ import datetime
 from django.http import JsonResponse
 
 
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def admnPanel_index(request):
 
     if request.user.is_authenticated:
@@ -26,14 +26,14 @@ def admnPanel_index(request):
 
     return render(request, 'backEnd/index.html', context)
 
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_home(request):
 
     return render(request, 'backEnd/home.html')
 
 
 # function for adding new staff
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addStaff(request):
 
     if request.method == 'POST':
@@ -71,7 +71,7 @@ def adminPanel_addStaff(request):
 
 
 # deactivate staff account
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_deactivateStaffAccount(request, pk):
 
     try:
@@ -87,7 +87,7 @@ def adminPanel_deactivateStaffAccount(request, pk):
 
 
 # activate staff account
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_activateStaffAccount(request, pk):
 
     try:
@@ -104,7 +104,7 @@ def adminPanel_activateStaffAccount(request, pk):
 
 
 # remove staff account
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_removeStaffAccount(request, pk):
 
     try:
@@ -117,7 +117,7 @@ def adminPanel_removeStaffAccount(request, pk):
         return redirect("adminPanelAddStaff")
     return redirect("adminPanelAddStaff")
 
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_profilePic(request):
     # profile picture
     profile_pic = UserProfileImage.objects.filter(user=request.user).first()
@@ -149,7 +149,7 @@ def adminPanel_profilePic(request):
 
     return render(request, 'backEnd/profile_setting.html', context)
 
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_changePassword(request):
 
     if request.method == 'POST':
@@ -179,7 +179,7 @@ def adminPanel_changePassword(request):
     return render(request, 'backEnd/profile_setting.html')
 
 # news categories
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_newsCategory(request):
 
     if request.method == 'POST':
@@ -204,7 +204,7 @@ def adminPanel_newsCategory(request):
     return render(request, 'backEnd/news_category.html', context)
 
 # delete news categories
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_DeleteNewsCategory(request, pk):
 
     try:
@@ -219,7 +219,7 @@ def adminPanel_DeleteNewsCategory(request, pk):
     return redirect('adminPanelNewsCats')
 
 # news categories & subcategories
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_newsSubCategory(request):
 
     if request.method == 'POST':
@@ -247,7 +247,7 @@ def adminPanel_newsSubCategory(request):
 
 
 # news subcategories list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_newsSubCatList(request, pk):
 
     # grabing all the news subcategories based on news category pk
@@ -262,7 +262,7 @@ def adminPanel_newsSubCatList(request, pk):
     return render(request, 'backEnd/news_subcat_list.html', context)
 
 # delete news subcategories from the list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_newsSubCatDelete(request, pk):
 
     try:
@@ -277,7 +277,7 @@ def adminPanel_newsSubCatDelete(request, pk):
     return redirect('adminPanelNewsSubCatList', pk=pk)
 
 # breaking news section
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addBreakingNews(request):
 
     if request.method == 'POST':
@@ -304,7 +304,7 @@ def adminPanel_addBreakingNews(request):
     return render(request, 'backEnd/add-breaking-news.html', context)
 
 # delete breaking news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_deleteBreakingNews(request, pk):
 
     try:
@@ -320,7 +320,7 @@ def adminPanel_deleteBreakingNews(request, pk):
     return redirect('adminPanelAddBreakingNews')
 
 # site setting function
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_siteSetting(request):
     # grab existing editor publisher info
     editor_publisher_info = EditorPublisher.objects.filter().first()
@@ -339,7 +339,7 @@ def adminPanel_siteSetting(request):
     return render(request, 'backEnd/site-setting.html', context)
 
 # Update site logo
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_updateSiteLogo(request):
 
     if request.method == 'POST':
@@ -376,7 +376,7 @@ def adminPanel_updateSiteLogo(request):
 
 
 # delete site logo
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_delSiteLogo(request, pk):
 
     try:
@@ -393,7 +393,7 @@ def adminPanel_delSiteLogo(request, pk):
     return redirect('adminPanelUpdateSiteLogo')
 
 # add social media link here
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addSocialMediaLink(request):
 
     if request.method == 'POST':
@@ -427,7 +427,7 @@ def adminPanel_addSocialMediaLink(request):
     return render(request, "backEnd/site-setting.html", context)
 
 # edit social media link here
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editSocialMediaLinks(request, pk):
 
     social_media_link_list = SocialMediaLink.objects.filter(pk=pk).first()
@@ -457,7 +457,7 @@ def adminPanel_editSocialMediaLinks(request, pk):
 
 
 # add editor/publisher
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addEditorPublisher(request):
 
     if request.method == 'POST':
@@ -489,7 +489,7 @@ def adminPanel_addEditorPublisher(request):
 
 
 # edit editor/publisher
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editEditorPublisher(request, pk):
 
     existing_editor_publisher_info = EditorPublisher.objects.filter(pk=pk).first()
@@ -517,7 +517,7 @@ def adminPanel_editEditorPublisher(request, pk):
 
 
 # cover news setting
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addCoverNews(request):
 
 
@@ -535,7 +535,7 @@ def adminPanel_addCoverNews(request):
     return render(request, "backEnd/add-main-cover-news.html", context)
 
 # add main cover news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addMainCoverNews(request):
 
     if request.method == "POST":
@@ -588,7 +588,7 @@ def adminPanel_addMainCoverNews(request):
 
 
 # Edit main cover news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editMainCoverNews(request, pk):
 
     # grabing existing info
@@ -645,7 +645,7 @@ def adminPanel_editMainCoverNews(request, pk):
 
 
 # add cover news one
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addCoverNewsOne(request):
 
     if request.method == "POST":
@@ -698,7 +698,7 @@ def adminPanel_addCoverNewsOne(request):
 
 
 # Edit cover news one
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editCoverNewsOne(request, pk):
 
     # grabing existing info
@@ -754,7 +754,7 @@ def adminPanel_editCoverNewsOne(request, pk):
     return render(request, "backEnd/edit_cover_news_1.html", context)
 
 # add cover news two
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addCoverNewsTwo(request):
 
     if request.method == "POST":
@@ -807,7 +807,7 @@ def adminPanel_addCoverNewsTwo(request):
 
 
 # Edit cover news two
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editCoverNewsTwo(request, pk):
 
     # grabing existing info
@@ -864,7 +864,7 @@ def adminPanel_editCoverNewsTwo(request, pk):
 
 
 # add cover news three
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addCoverNewsThree(request):
 
     if request.method == "POST":
@@ -917,7 +917,7 @@ def adminPanel_addCoverNewsThree(request):
 
 
 # Edit cover news three
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editCoverNewsThree(request, pk):
 
     # grabing existing info
@@ -974,14 +974,14 @@ def adminPanel_editCoverNewsThree(request, pk):
 
 
 # add cover news four
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addCoverNewsFour(request):
 
     if request.method == "POST":
-        img = request.FILES['cover_news_three']
-        news_title = request.POST.get('cover_news_three_title')
-        news_details = request.POST.get('cover_news_three_details')
-        news_category = request.POST.get('select_cover_news_three_category')
+        img = request.FILES['cover_news_four']
+        news_title = request.POST.get('cover_news_four_title')
+        news_details = request.POST.get('cover_news_four_details')
+        news_category = request.POST.get('select_cover_news_four_category')
 
         valid_file_extension = ['png', 'jpeg', 'jpg']
         img_extension = str(img).split('.')
@@ -1027,7 +1027,7 @@ def adminPanel_addCoverNewsFour(request):
 
 
 # Edit cover news four
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editCoverNewsFour(request, pk):
 
     # grabing existing info
@@ -1083,7 +1083,7 @@ def adminPanel_editCoverNewsFour(request, pk):
     return render(request, "backEnd/edit_cover_news_4.html", context)
 
 # cover news list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_coverNewsList(request):
 
     # grab cover new one info
@@ -1108,7 +1108,7 @@ def adminPanel_coverNewsList(request):
 
 
 # most recent news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addMostRecentNews(request):
 
     # grabing all the most recent news from db
@@ -1139,7 +1139,7 @@ def adminPanel_addMostRecentNews(request):
     return render(request, 'backEnd/add_most_recent.html', context)
 
 # most recent news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editMostRecentNews(request, pk):
 
     # grabing existing data from db by pk
@@ -1192,7 +1192,7 @@ def adminPanel_editMostRecentNews(request, pk):
     return render(request, 'backEnd/edit_most_recent_news.html', context)
 
 # most recent news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_delMostRecentNews(request, pk):
 
     try:
@@ -1211,7 +1211,7 @@ def adminPanel_delMostRecentNews(request, pk):
 
 # most popular
 # add most popular news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addMostPopularNews(request):
 
     # grabing all the most recent news from db
@@ -1243,7 +1243,7 @@ def adminPanel_addMostPopularNews(request):
 
 
 # edit most popular news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editMostPopularNews(request, pk):
 
     # grabing all the most recent news from db
@@ -1323,7 +1323,7 @@ def adminPanel_deleteMostPopularNews(request, pk):
 # main news section starts
 
 # add main news
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_addMainNews(request):
 
     # grabing all the categories from db
@@ -1410,7 +1410,7 @@ def adminPanel_addMainNews(request):
     return render(request, "backEnd/add_main_news.html", context)
 
 # main news list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_MainNewsList(request):
 
     # grabing all the main news
@@ -1424,7 +1424,7 @@ def adminPanel_MainNewsList(request):
 
 
 # main news list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_editMainNews(request, pk):
 
     # grabing news from db
@@ -1526,7 +1526,7 @@ def adminPanel_editMainNews(request, pk):
     return render(request, "backEnd/edit_main_news.html", context)
 
 # main news list
-# @login_required(login_url='/login/user')
+@login_required(login_url='/login/user')
 def adminPanel_deleteMainNews(request, pk):
 
     try:
@@ -1543,9 +1543,60 @@ def adminPanel_deleteMainNews(request, pk):
     return redirect('adminPanelMainNewsList')
 
 
+# visitor's message list
+@login_required(login_url='/login/user')
+def adminPanel_visitor_msg_list(request):
+
+    # grabing messages from db
+    visitors_msg = Visitor_message.objects.all()
+
+    context = {
+        'visitors_msg' : visitors_msg,
+    }
+    return render(request, 'backEnd/visitors_msg_list.html', context)
 
 
+# visitor's delete
+@login_required(login_url='/login/user')
+def adminPanel_delVisitor_msg_from_list(request, pk):
 
+    try:
+        # grabing specific msg form message list
+        msg_list_db = Visitor_message.objects.filter(pk=pk).first()
+        msg_list_db.delete()
+        messages.success(request, "Successfully deleted!")
+        return redirect('adminPanelVisitorMsgList')
+    except:
+        messages.warning(request, "There is something wrong!")
+        return redirect('adminPanelVisitorMsgList')
+
+    return redirect('adminPanelVisitorMsgList')
+
+
+# update contact info
+@login_required(login_url='/login/user')
+def adminPanel_update_site_contact_info(request):
+
+    if request.method == 'POST':
+        address_1 = request.POST.get('address_1')
+        address_2 = request.POST.get('address_2')
+        email     = request.POST.get('email')
+        phone     = request.POST.get('phone')
+
+        if address_1 != '' and email != '' and phone != '':
+            site_contact_info_model = SiteContactInfo(address1=address_1, address2=address_1, email=email, phone=phone)
+            site_contact_info_model.save()
+            messages.success(request, "Updated Contact info")
+            return redirect('adminPanelUpdateSiteContactInfo')
+
+    # grabing site contact info
+    site_contact_info = SiteContactInfo.objects.filter().first()
+
+    context = {
+        'site_contact_info' : site_contact_info,
+    }
+
+    return render(request, 'backEnd/update_contact_info.html', context)
 
 
 

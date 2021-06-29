@@ -29,6 +29,7 @@
 		</div>
 	</div>
 
+
 	<!-- Content -->
 	<section class="bg0 p-b-140 p-t-10">
 		<div class="container">
@@ -45,28 +46,8 @@
 								{{news_by_pk.news_title}}
 							</h3>
 
-<!--							<div class="flex-wr-s-s p-b-40">-->
-<!--								<span class="f1-s-3 cl8 m-r-15">-->
-<!--									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">-->
-<!--										by John Alvarado-->
-<!--									</a>-->
 
-<!--									<span class="m-rl-3">-</span>-->
-
-<!--									<span>-->
-<!--										Feb 18-->
-<!--									</span>-->
-<!--								</span>-->
-
-<!--								<span class="f1-s-3 cl8 m-r-15">-->
-<!--									5239 Views-->
-<!--								</span>-->
-
-<!--								<a href="#" class="f1-s-3 cl8 hov-cl10 trans-03 m-r-15">-->
-<!--									0 Comment-->
-<!--								</a>-->
-<!--							</div>-->
-
+							<!-- Share -->
 							<!-- Share -->
 							<div class="flex-s-s">
 								<span class="f1-s-12 cl5 p-t-1 m-r-15">
@@ -74,24 +55,25 @@
 								</span>
 
 								<div class="flex-wr-s-s size-w-0">
-									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-1 trans-03">
+									<a href="#" class="dis-block f1-s-18 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-facebook-f m-r-3"></i>
 										<!-- Facebook -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border bg-twitter">
 										<i class="fab fa-twitter m-r-3"></i>
 										<!-- Twitter -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-google borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="bg-google dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-google-plus-g m-r-3"></i>
 										<!-- Google+ -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-pinterest borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="bg-pinterest dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-pinterest-p m-r-3"></i>
 										<!-- Pinterest -->
+<!--										bg-pinterest dis-block f1-s-18 cl0 borad-3 p-tb-12 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03 add_border-->
 									</a>
 								</div>
 							</div>
@@ -103,7 +85,7 @@
 							</div>
 
 							<p class="f1-s-11 cl6 p-b-25">
-								{{news_by_pk.news_description}}
+								{{news_by_pk.news_description|safe}}
 							</p>
 
 							<!-- Tag -->
@@ -130,24 +112,25 @@
 								</span>
 
 								<div class="flex-wr-s-s size-w-0">
-									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="dis-block f1-s-18 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-facebook-f m-r-3"></i>
 										<!-- Facebook -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-twitter borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border bg-twitter">
 										<i class="fab fa-twitter m-r-3"></i>
 										<!-- Twitter -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-google borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="bg-google dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-google-plus-g m-r-3"></i>
 										<!-- Google+ -->
 									</a>
 
-									<a href="#" class="dis-block f1-s-13 cl0 bg-pinterest borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+									<a href="#" class="bg-pinterest dis-block f1-s-18 cl0 borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
 										<i class="fab fa-pinterest-p m-r-3"></i>
 										<!-- Pinterest -->
+<!--										bg-pinterest dis-block f1-s-18 cl0 borad-3 p-tb-12 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03 add_border-->
 									</a>
 								</div>
 							</div>
@@ -205,7 +188,7 @@
 											<div class="flex-wr-sb-s m-b-8">
 												<div class="size-w-0">
 													<h5 class="p-b-5">
-														<a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+														<a href="{% url 'newMostRecentDetails' cat_id=news.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
 															<img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}" style="width:25px;height:25px;" alt="">
 															{{news.news_title}}
 														</a>
@@ -226,7 +209,7 @@
 											<div class="flex-wr-sb-s m-b-8">
 												<div class="size-w-0">
 													<h5 class="p-b-5">
-														<a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+														<a href="{% url 'newMostPopularDetails' cat_id=news.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
 															<img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}" style="width:25px;height:25px;" alt="">
 															{{news.news_title}}
 														</a>

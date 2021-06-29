@@ -44,6 +44,9 @@
                     <div class="col-xs-12">
                         <textarea name="most_popular_news_description" id="" cols="30" rows="10"
                                   placeholder="News Description" style="width:100%" required></textarea>
+                        <script>
+                            CKEDITOR.replace('most_popular_news_description');
+                        </script>
                     </div>
                 </div>
                 <div class="form-group">
@@ -96,7 +99,7 @@
                 <td class="text-center"><img src="{{news.news_image.url}}" style="width:75px;height:75px;" alt="avatar"
                                              class="img-circle"></td>
                 <td class="text-center">{{news.news_title}}</td>
-                <td class="text-center">{{news.news_description}}</td>
+                <td class="text-center">{{news.news_description|safe}}</td>
                 <td class="text-center">{{news.news_writer}}</td>
                 <td class="text-center">
                     <div class="btn-group btn-group-xs">
