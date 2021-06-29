@@ -32,5 +32,8 @@ urlpatterns = [
     # contact us
     url(r'^ab/news/contact/us/$', views.contact_us, name='abContactUs'),
 
+    # about us
+    url(r'^ab/about/us/$', views.about_us, name='abAbout'),
+
 
 ]

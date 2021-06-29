@@ -345,7 +345,7 @@ def adminPanel_updateSiteLogo(request):
     if request.method == 'POST':
         site_logo = request.FILES['profile-pic']
         logo_extension = str(site_logo).split('.')
-        valid_extension_list = ['png', 'jpeg', 'jpg']
+        valid_extension_list = ['png', 'jpeg', 'jpg', 'webp']
 
         if logo_extension[1] in valid_extension_list:
             if len(SiteLogo.objects.all()) <= 0:
@@ -544,7 +544,7 @@ def adminPanel_addMainCoverNews(request):
         news_category = request.POST.get('select-cover-news-category')
         cover_news_details = request.POST.get('cover_news_details')
 
-        valid_file_extension = ['png', 'jpeg', 'jpg']
+        valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
@@ -606,7 +606,7 @@ def adminPanel_editMainCoverNews(request, pk):
         try:
             fs = FileSystemStorage()
             img = request.FILES['edi-main-cover-news-img']
-            valid_file_extension = ['png', 'jpeg', 'jpg']
+            valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
             img_extension = str(img).split('.')
 
             if img_extension[1] in valid_file_extension:
@@ -654,7 +654,7 @@ def adminPanel_addCoverNewsOne(request):
         news_details = request.POST.get('cover_news_one_details')
         news_category = request.POST.get('select-cover-news-category')
 
-        valid_file_extension = ['png', 'jpeg', 'jpg']
+        valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
@@ -716,7 +716,7 @@ def adminPanel_editCoverNewsOne(request, pk):
         try:
             fs = FileSystemStorage()
             img = request.FILES['edit-cover-news-one-img']
-            valid_file_extension = ['png', 'jpeg', 'jpg']
+            valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
             img_extension = str(img).split('.')
 
             if img_extension[1] in valid_file_extension:
@@ -763,7 +763,7 @@ def adminPanel_addCoverNewsTwo(request):
         news_details  = request.POST.get('cover_news_two_details')
         news_category = request.POST.get('select_cover_news_two_category')
 
-        valid_file_extension = ['png', 'jpeg', 'jpg']
+        valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
@@ -825,7 +825,7 @@ def adminPanel_editCoverNewsTwo(request, pk):
         try:
             fs = FileSystemStorage()
             img = request.FILES['edit-cover-news-one-img']
-            valid_file_extension = ['png', 'jpeg', 'jpg']
+            valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
             img_extension = str(img).split('.')
 
             if img_extension[1] in valid_file_extension:
@@ -873,7 +873,7 @@ def adminPanel_addCoverNewsThree(request):
         news_details = request.POST.get('cover_news_three_details')
         news_category = request.POST.get('select_cover_news_three_category')
 
-        valid_file_extension = ['png', 'jpeg', 'jpg']
+        valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
@@ -935,7 +935,7 @@ def adminPanel_editCoverNewsThree(request, pk):
         try:
             fs = FileSystemStorage()
             img = request.FILES['edit-cover-news-three-img']
-            valid_file_extension = ['png', 'jpeg', 'jpg']
+            valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
             img_extension = str(img).split('.')
 
             if img_extension[1] in valid_file_extension:
@@ -983,7 +983,7 @@ def adminPanel_addCoverNewsFour(request):
         news_details = request.POST.get('cover_news_four_details')
         news_category = request.POST.get('select_cover_news_four_category')
 
-        valid_file_extension = ['png', 'jpeg', 'jpg']
+        valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
         img_extension = str(img).split('.')
 
         if img_extension[1] in valid_file_extension:
@@ -1045,7 +1045,7 @@ def adminPanel_editCoverNewsFour(request, pk):
         try:
             fs = FileSystemStorage()
             img = request.FILES['edit-cover-news-four-img']
-            valid_file_extension = ['png', 'jpeg', 'jpg']
+            valid_file_extension = ['png', 'jpeg', 'jpg', 'webp']
             img_extension = str(img).split('.')
 
             if img_extension[1] in valid_file_extension:
@@ -1121,7 +1121,7 @@ def adminPanel_addMostRecentNews(request):
         news_writer      = request.POST.get('news_writer')
 
         news_file_extension = str(news_img).split('.')
-        valid_extension     = ['jpeg', 'jpg', 'png']
+        valid_extension     = ['jpeg', 'jpg', 'png', 'webp']
 
         if news_file_extension[1] in valid_extension:
             most_recent_news_db = MostRecent(news_image=news_img, news_title=news_title, news_description=news_description, news_writer=news_writer, news_visitors=0)
@@ -1155,7 +1155,7 @@ def adminPanel_editMostRecentNews(request, pk):
             img = request.FILES['most_recent_img']
 
             news_file_extension = str(img).split('.')
-            valid_extension = ['jpeg', 'jpg', 'png']
+            valid_extension = ['jpeg', 'jpg', 'png', 'webp']
 
             if news_file_extension[1] in valid_extension:
                 #grab db by pk
@@ -1224,7 +1224,7 @@ def adminPanel_addMostPopularNews(request):
         news_writer      = request.POST.get('news_writer')
 
         news_file_extension = str(news_img).split('.')
-        valid_extension     = ['jpeg', 'jpg', 'png']
+        valid_extension     = ['jpeg', 'jpg', 'png', 'webp']
 
         if news_file_extension[1] in valid_extension:
             most_recent_news_db = MostPopular(news_image=news_img, news_title=news_title, news_description=news_description, news_writer=news_writer, news_visitors=0)
@@ -1257,7 +1257,7 @@ def adminPanel_editMostPopularNews(request, pk):
         try:
             news_img = request.FILES['most_popular_img']
             news_file_extension = str(news_img).split('.')
-            valid_extension = ['jpeg', 'jpg', 'png']
+            valid_extension = ['jpeg', 'jpg', 'png', 'webp']
 
             if news_file_extension[1] in valid_extension:
                 fs = FileSystemStorage()
@@ -1349,7 +1349,7 @@ def adminPanel_addMainNews(request):
         print(news_sub_cat_id)
 
         file_extension = str(news_file).split('.')
-        valid_extension = ['jpeg', 'jpg', 'png']
+        valid_extension = ['jpeg', 'jpg', 'png', 'webp']
 
         if file_extension[1] in valid_extension:
             if int(news_sub_cat_id) >= 0 and int(news_sub_cat_id) != 0:
@@ -1457,7 +1457,7 @@ def adminPanel_editMainNews(request, pk):
         try:
             news_file = request.FILES['main_news_img']
             file_extension = str(news_file).split('.')
-            valid_extension = ['jpeg', 'jpg', 'png']
+            valid_extension = ['jpeg', 'jpg', 'png', 'webp']
 
             if file_extension[1] in valid_extension:
 

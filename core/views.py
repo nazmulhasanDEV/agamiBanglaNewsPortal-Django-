@@ -1257,3 +1257,69 @@ def contact_us(request):
     }
 
     return render(request, 'frontEnd/contact.html', context)
+
+
+def about_us(request):
+    # grabing site logo from db
+    site_logo_db = SiteLogo.objects.filter().first()
+
+    # grabing category model
+    news_category_model = NewsCategories.objects.all()
+
+    # grabing sub-cat model
+    subcategory_model = NewsSubCategories.objects.all()
+
+    # editor publisher info
+    if EditorPublisher.objects.count() > 0:
+        editor_publisher_info = EditorPublisher.objects.filter().first()
+    else:
+        editor_publisher_info = "Not added yet!"
+
+    # find out category which has no sub-category
+    category_list_which_has_no_subcat = []
+    for x in news_category_model:
+        is_exist_cat_in_subcat = subcategory_model.filter(category=x.pk).first()
+        if is_exist_cat_in_subcat is None:
+            category_list_which_has_no_subcat.append(x.pk)
+
+    # list of category pk's which has at least one news under any subcategory
+    list_of_cat_pk_which_has_atleast_one_news = []
+    for news in NewsMain.objects.all():
+        list_of_cat_pk_which_has_atleast_one_news.append(news.news_catid)
+
+    # getting visitor's message
+    if request.method == 'POST':
+        visitor_name = request.POST.get('name')
+        visitor_email = request.POST.get('email')
+        visitor_msg = request.POST.get('msg')
+
+        if visitor_name != '':
+            visitor_msg_model = Visitor_message(visitor_name=visitor_name, visitor_email=visitor_email,
+                                                visitor_text=visitor_msg)
+            visitor_msg_model.save()
+            messages.success(request, "Thanks for contacting with us! We will back to you soon!")
+            return redirect('abContactUs')
+
+    context = {
+
+        # site logo
+        'site_logo': site_logo_db,
+
+        # news category model
+        'news_category_model': news_category_model,
+
+        # news subcategory model/list
+        'subcategory_model': subcategory_model,
+
+        # list of category which has at least one main news under it's any subcat
+        'list_of_cat_pk_which_has_atleast_one_news': list_of_cat_pk_which_has_atleast_one_news,
+
+        # list of category which has no sub-category
+        'category_list_which_has_no_subcat': category_list_which_has_no_subcat,
+
+        # editor publisher info
+        'editor_publisher': editor_publisher_info,
+
+    }
+
+    return render(request, 'frontEnd/about_us.html', context)
