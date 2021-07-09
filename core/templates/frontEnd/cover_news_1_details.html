@@ -1,24 +1,23 @@
 {% extends 'frontEnd/index.html' %}
 {% load static %}
 
+{% block page_title %}বিস্তারিত{% endblock %}
+
 {% block main_content %}
 
 <!-- Breadcrumb -->
 	<div class="container">
 		<div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
-<!--			<div class="f2-s-1 p-r-30 m-tb-6">-->
-<!--				<a href="index.html" class="breadcrumb-item f1-s-3 cl9">-->
-<!--					Home-->
-<!--				</a>-->
+			<div class="f2-s-1 p-r-30 m-tb-6">
+				<a href="index.html" class="breadcrumb-item f1-s-3 cl9">
+					Home
+				</a>
 
-<!--				<a href="blog-list-01.html" class="breadcrumb-item f1-s-3 cl9">-->
-<!--					Blog-->
-<!--				</a>-->
+				<a href="blog-list-01.html" class="breadcrumb-item f1-s-3 cl9">
+					New Details
+				</a>
 
-<!--				<span class="breadcrumb-item f1-s-3 cl9">-->
-<!--					 Nulla non interdum metus non laoreet nisi tellus eget aliquam lorem pellentesque-->
-<!--				</span>-->
-<!--			</div>-->
+			</div>
 
 <!--			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">-->
 <!--				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">-->
@@ -26,6 +25,7 @@
 <!--					<i class="zmdi zmdi-search"></i>-->
 <!--				</button>-->
 <!--			</div>-->
+
 		</div>
 	</div>
 
@@ -38,7 +38,7 @@
 						<!-- Blog Detail -->
 						<div class="p-b-70">
 							<a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
-								{{cover_news_subcategory.cover_news_subcategory}}
+								Cover News
 							</a>
 
 							<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2">
@@ -46,22 +46,22 @@
 							</h3>
 
 							<div class="flex-wr-s-s p-b-40">
-<!--								<span class="f1-s-3 cl8 m-r-15">-->
-<!--									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">-->
-<!--										by John Alvarado-->
-<!--									</a>-->
-
-<!--									<span class="m-rl-3">-</span>-->
-
-<!--									<span>-->
-<!--										Feb 18-->
-<!--									</span>-->
-<!--								</span>-->
-
+								<span class="f1-s-3 cl8 m-r-15">
+									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+										{{editor_publisher.publisher_name}}
+									</a>
+<!---->
+									<span class="m-rl-3">-</span>
+<!---->
+									<span>
+										{{cover_news_subcategory.cover_news_added_at}}
+									</span>
+								</span>
+<!---->
 <!--								<span class="f1-s-3 cl8 m-r-15">-->
 <!--									5239 Views-->
 <!--								</span>-->
-
+<!---->
 <!--								<a href="#" class="f1-s-3 cl8 hov-cl10 trans-03 m-r-15">-->
 <!--									0 Comment-->
 <!--								</a>-->
@@ -69,9 +69,9 @@
 
 							<!-- Share -->
 							<div class="flex-s-s">
-								<span class="f1-s-12 cl5 p-t-1 m-r-15">
-									Share:
-								</span>
+<!--								<span class="f1-s-12 cl5 p-t-1 m-r-15">-->
+<!--									Share:-->
+<!--								</span>-->
 
 								<div class="flex-wr-s-s size-w-0">
 									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-1 trans-03 add_border">
@@ -100,6 +100,7 @@
 
 							<div class="wrap-pic-max-w p-b-30">
 								<img src="{{cover_news_subcategory.cover_news_image.url}}" alt="IMG">
+								<p class="news_details_img_short_description">This is image text</p>
 							</div>
 
 							<p class="f1-s-11 cl6 p-b-25">
@@ -109,9 +110,9 @@
 
 							<!-- Share -->
 							<div class="flex-s-s">
-								<span class="f1-s-12 cl5 p-t-1 m-r-15">
-									Share:
-								</span>
+<!--								<span class="f1-s-12 cl5 p-t-1 m-r-15">-->
+<!--									Share:-->
+<!--								</span>-->
 
 								<div class="flex-wr-s-s size-w-0">
 									<a href="#" class="dis-block f1-s-18 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
@@ -149,7 +150,7 @@
 							</p>
 
 							<form>
-								<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="msg" placeholder="Comment..."></textarea>
+								<textarea class="bo-1-rad-3 bocl13 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" rows="2" cols="60" name="msg" placeholder="Comment..."></textarea>
 
 								<button class="size-a-17 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-10">
 									Post Comment

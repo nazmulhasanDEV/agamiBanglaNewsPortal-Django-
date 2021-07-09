@@ -195,8 +195,18 @@ def home(request):
     else:
         editor_publisher_info = "Not added yet!"
 
+    # grabing most recent shikkha ongon news
+    most_recent_shikkaongon_news = NewsMain.objects.filter(news_catid=8)
+
+    # grabing most recent binodon news
+    most_recent_binodon_news = NewsMain.objects.filter(news_catid=7)
+
+
 
     context = {
+
+        'most_recent_shikkaongon_news': most_recent_shikkaongon_news,
+        'most_recent_binodon_news': most_recent_binodon_news,
 
         # section for news category which has 1 or > 1 subcategory
 

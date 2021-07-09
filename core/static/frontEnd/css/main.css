@@ -6,6 +6,15 @@ Title           : 18px/1.6 '', Arial, sans-serif;
 Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
 -------------------------------------------------------------------*/
+/* extra adding image title css */
+.news_details_img_short_description {
+position: relative;
+background-color: whitesmoke;
+color: black;
+padding: 5px 0px 5px 0px;
+text-align: center;
+}
+
 
 /* galler part */
 .cat_name p{
@@ -1884,9 +1893,9 @@ a.breadcrumb-item:hover {
 /*//////////////////////////////////////////////////////////////////
 [ Hover ]*/
 .add_border {
-width: 50px;
-height: 50px;
-padding: 15px;
+width: 35px;
+height: 35px;
+padding: 8px;
 border-radius: 50%;
 text-align: center;
 }
@@ -2029,3 +2038,4 @@ text-align: center;
 @media (max-width: 480px) {
   
 }
+

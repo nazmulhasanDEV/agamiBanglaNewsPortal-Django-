@@ -1,6 +1,8 @@
 {% extends 'frontEnd/index.html' %}
 {% load static %}
 
+{% block page_title %}বিস্তারিত{% endblock %}
+
 {% block main_content %}
 
 <!-- Breadcrumb -->
@@ -18,7 +20,7 @@
 						<!-- Blog Detail -->
 						<div class="p-b-70">
 							<a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
-								{{cover_news_subcategory.cover_news_subcategory}}
+								Cover News
 							</a>
 
 							<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2">
@@ -26,17 +28,17 @@
 							</h3>
 
 							<div class="flex-wr-s-s p-b-40">
-<!--								<span class="f1-s-3 cl8 m-r-15">-->
-<!--									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">-->
-<!--										by John Alvarado-->
-<!--									</a>-->
-
-<!--									<span class="m-rl-3">-</span>-->
-
-<!--									<span>-->
-<!--										Feb 18-->
-<!--									</span>-->
-<!--								</span>-->
+								<span class="f1-s-3 cl8 m-r-15">
+									<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
+										{{editor_publisher.publisher_name}}
+									</a>
+<!---->
+									<span class="m-rl-3">-</span>
+<!---->
+									<span>
+										{{cover_news_subcategory.cover_news_added_at}}
+									</span>
+								</span>
 
 <!--								<span class="f1-s-3 cl8 m-r-15">-->
 <!--									5239 Views-->
@@ -49,9 +51,9 @@
 
 							<!-- Share -->
 							<div class="flex-s-s">
-								<span class="f1-s-12 cl5 p-t-8 m-r-15">
-									Share:
-								</span>
+<!--								<span class="f1-s-12 cl5 p-t-8 m-r-15">-->
+<!--									Share:-->
+<!--								</span>-->
 
 								<div class="flex-wr-s-s size-w-0">
 									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-1 trans-03 add_border">
@@ -79,7 +81,8 @@
 							<br>
 
 							<div class="wrap-pic-max-w p-b-30">
-								<img src="{{cover_news_subcategory.cover_news_image.url}}" alt="IMG">
+								<img src="{{cover_news_subcategory.cover_news_image.url}}" alt="News Details">
+								<p class="news_details_img_short_description">This is image text</p>
 							</div>
 
 							<p class="f1-s-11 cl6 p-b-25">
@@ -89,9 +92,9 @@
 
 							<!-- Share -->
 							<div class="flex-s-s">
-								<span class="f1-s-12 cl5 p-t-8 m-r-15">
-									Share:
-								</span>
+<!--								<span class="f1-s-12 cl5 p-t-8 m-r-15">-->
+<!--									Share:-->
+<!--								</span>-->
 
 								<div class="flex-wr-s-s size-w-0">
 									<a href="#" class="dis-block f1-s-13 cl0 bg-facebook borad-3 hov-btn1 m-r-3 m-b-3 trans-03 add_border">
@@ -128,7 +131,7 @@
 							</p>
 
 							<form>
-								<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="msg" placeholder="Comment..."></textarea>
+								<textarea class="bo-1-rad-3 bocl13 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" rows="2" cols="60" name="msg" placeholder="Comment..."></textarea>
 
 								<button class="size-a-17 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-10">
 									Post Comment

@@ -1,6 +1,8 @@
 {% extends 'frontEnd/index.html' %}
 {% load static %}
 
+{% block page_title %}নিউজ{% endblock %}
+
 {% block main_content %}
 
 <!-- Headline -->
@@ -511,8 +513,8 @@
                 </div>
             </div>
 
-            <!--				most recent and popular part -->
             <div class="col-md-10 col-lg-4">
+                <!--				most recent and popular part -->
                 <div class="p-l-10 p-rl-0-sr991 p-b-20">
                     <!-- test most recent -->
                     <div class="tab01 p-b-20">
@@ -604,8 +606,112 @@
                     <br><br>
 
                 </div>
+                <!--				ends most recent and popular part-->
+
+<!--                shikkha and binodon starts -->
+                <div class="p-l-10 p-rl-0-sr991 p-b-20">
+                    <!-- test most recent -->
+                    <div class="tab01 p-b-20">
+                        <div class="tab01-head how2 how2-cl1 bocl12 flex-s-c m-r-10 m-r-0-sr991" id="most-recent-pop">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tab1-education" role="tab">শিক্ষাঙ্গন</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tab1-entertainment" role="tab">বিনোদন</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <!-- Tab panes -->
+                        <div class="tab-content p-t-35">
+                            <!-- - -->
+                            <div class="tab-pane fade show most-recent-pop-news active" id="tab1-education"
+                                 role="tabpanel">
+                                <div class="row">
+                                    <div class="col-sm-12 p-r-25 p-r-15-sr991">
+                                        <!-- Item post -->
+                                        {% if most_recent_shikkaongon_news %}
+                                        {% for news in most_recent_shikkaongon_news %}
+                                        {% if forloop.counter <= 5 %}
+                                        <div class="flex-wr-sb-s m-b-8">
+                                            <div class="size-w-0">
+                                                <h5 class="p-b-5">
+                                                    <a href="{% url 'abNewsDetails' pk=news.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                        <img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}"
+                                                             style="width:25px;height:25px;" alt="">
+                                                        {{news.news_title}}
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- - -->
+                            <div class="tab-pane fade most-recent-pop-news" id="tab1-entertainment" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-sm-12 p-r-25 p-r-15-sr991">
+                                        <!-- Item post -->
+                                        {% if most_recent_binodon_news %}
+                                        {% for news in most_recent_binodon_news %}
+                                        {% if forloop.counter <= 5 %}
+                                        <div class="flex-wr-sb-s m-b-8">
+                                            <div class="size-w-0">
+                                                <h5 class="p-b-5">
+                                                    <a href="{% url 'abNewsDetails' pk=news.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                        <img src="{%static 'frontEnd/agamiBanglaLogo/favicon-icon.png' %}"
+                                                             style="width:25px;height:25px;" alt="">
+                                                        {{news.news_title}}
+                                                    </a>
+                                                </h5>
+
+                                                <!-- <span class="cl8">
+                                                    <a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+                                                        Celebrity
+                                                    </a>
+
+                                                    <span class="f1-s-3 m-rl-3">
+                                                        -
+                                                    </span>
+
+                                                    <span class="f1-s-3">
+                                                        Feb 12
+                                                    </span>
+                                                </span> -->
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- test most recent ends -->
+
+                    <!--  -->
+                    <div class="flex-c-s p-t-8">
+                        <a href="#">
+                            <!-- <img class="max-w-full" src="images/banner-02.jpg" style="visibility: hidden!important; display: none!important;" alt="IMG"> -->
+                        </a>
+                    </div>
+                    <br><br>
+
+                </div>
+<!--                shikkha and binodon ends -->
             </div>
-            <!--				ends most recent and popular part-->
+
+
         </div>
     </div>
 </section>

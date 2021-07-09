@@ -2,8 +2,20 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from . import views
 
+# sitemap
+# from django.contrib.sitemaps.views import sitemap
+# from .sitemap import AgamiBanglaSiteMap
+#
+# newsSitemaps = {
+#     'news' : AgamiBanglaSiteMap(),
+# }
+
 
 urlpatterns = [
+
+    # sitemap
+    # url(r'^sitemap\.xml$',sitemap, {'sitemaps': newsSitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
     # front-end index page
     url(r'^ag/public/index/$', views.index, name='publicIndex'),
     # front-end home page

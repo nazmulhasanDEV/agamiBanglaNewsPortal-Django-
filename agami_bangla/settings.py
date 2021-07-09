@@ -39,6 +39,9 @@ INSTALLED_APPS = [
 
     # ckeditor
     'ckeditor',
+
+    # sitemap
+    # 'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
